@@ -22,8 +22,24 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
+    let getAllShops = (callback) => {
+
+        let query = "SELECT * FROM shops";
+
+        dbPoolInstance.query(query, (err, result) => {
+            if (err) {
+                console.log("error at shops model, getAllShops ---", err.message);
+                callback(null, null);
+            }
+            else {
+                callback(null, result);
+            }
+        })
+    }
+
     return {
         findShop,
-        getSellerShops
+        getSellerShops,
+        getAllShops
     }
 }

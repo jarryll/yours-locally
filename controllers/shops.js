@@ -24,8 +24,23 @@ module.exports = (db) => {
 
     }
 
+    let allShops = (req, res) => {
+
+        console.log("allShops controller triggered");
+
+        db.shops.getAllShops((err, result) => {
+            if (err) {
+                console.log("error at shops controller, allShops ===", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+    }
+
     return {
         getShop,
-        sellerShops
+        sellerShops,
+        allShops
     }
 }

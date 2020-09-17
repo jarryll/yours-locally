@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 import Search from "./Search";
 import SellerShops from "./SellerShops";
+import AllShops from "./AllShops";
 import Results from "./Results";
 
 function Home() {
@@ -32,6 +33,7 @@ function Home() {
         setHasSearched(true);
         setInput("");
     }
+
     return (
         <div>
             <h1>You are HOME</h1>
@@ -41,9 +43,11 @@ function Home() {
                 inputHandler={inputHandler}
                 input={input}
             />
-
-            {loggedIn ? <SellerShops sellerId={sellerId} /> : null}
-
+            <br /><br />
+            {loggedIn && !hasSearched ? <SellerShops sellerId={sellerId} /> : null}
+            <br /><br />
+            {!hasSearched ? <AllShops /> : null}
+            <br /><br />
             {hasSearched ? <Results query={query} /> : null}
         </div>
     )

@@ -13,5 +13,5 @@ module.exports = (app, allModels) => {
     app.post('/login', accountsControllerCallbacks.login);
     app.get('/shops/:id/listings', listingsControllerCallbacks.shopListings);
     app.get('/seller/:sellerID/shops', shopsControllerCallbacks.sellerShops);
-
+    app.get('/allshops', shopsControllerCallbacks.allShops);
 };
