@@ -12,5 +12,5 @@ app.get('/categories', categoriesControllerCallbacks.getAllCategories);
 app.get('/results/:query', listingsControllerCallbacks.listings);
 app.post('/login', accountsControllerCallbacks.login);
 app.get('/shops/:id/listings', listingsControllerCallbacks.shopListings);
-
+app.put('/shops/:id',shopsControllerCallbacks.editShop);
 };
