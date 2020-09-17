@@ -9,14 +9,25 @@ module.exports = (db) => {
 
    let editShop = async (request,response) => {
     let {id} = request.params
-    console.log(id)
     let {shopName,about,imageUrl} = request.body;
     db.shops.getEditShop(shopName,about,imageUrl,id,(err,result)=>{
         if(err){
                 console.log(err)
-                response.status(500).send("Oops we did not find the question you were looking for")
+                response.status(500).send("Oops we did not find the shop you were looking for")
             } else {
                 response.send("updated!")
+            }
+    })
+   }
+
+   let deleteShop = async (request,response) => {
+    let {id} = request.params;
+    db.shops.getDeleteShop(id,(err,result)=>{
+        if(err){
+                console.log(err)
+                response.status(500).send("Oops we did not find the shop you were looking for")
+            } else {
+                response.send("deleted!")
             }
     })
    }
@@ -24,6 +35,7 @@ module.exports = (db) => {
 
      return {
         getShop,
-        editShop
+        editShop,
+        deleteShop
         }
     }

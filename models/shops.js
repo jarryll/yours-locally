@@ -15,8 +15,17 @@ module.exports = (dbPoolInstance) => {
             callback(err,result)
             })
     }
+
+    let getDeleteShop = async (id,callback)=> {
+        let query = `DELETE FROM shops WHERE id='${id}'; DELETE FROM listings WHERE listings.shop_id = '${id}'`
+        dbPoolInstance.query(query,(err,result)=>{
+            callback(err,result)
+            })
+    }
+
         return {
             findShop,
-            getEditShop
+            getEditShop,
+            getDeleteShop
         }
     }

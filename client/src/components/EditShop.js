@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DeleteShop from './DeleteShop'
 
 const EditShop =  ({ shop }) => {
   const [shopName, setShopName] =  useState(shop.shop_name);
@@ -100,9 +101,10 @@ console.log(shopName,about)
             </div>
 
             <div class="modal-footer">
+                <DeleteShop id={shop.id}/>
               <button
                 type="button"
-                class="btn btn-warning"
+                class="btn btn-primary"
                 data-dismiss="modal"
                 onClick={e => updateShop(e)}
               >
@@ -110,7 +112,7 @@ console.log(shopName,about)
               </button>
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn btn-warning"
                 data-dismiss="modal"
                 onClick={() => setFunction()}
               >

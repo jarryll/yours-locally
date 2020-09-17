@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EditShop from './EditShop';
+
 function ShopDetail({ match }) {
 
     const [shop, setShop] = useState({});
@@ -40,6 +41,7 @@ function ShopDetail({ match }) {
                <h3>{shop.about}</h3>
                {allListings}
                <EditShop shop={shop}/>
+
         </div>
 
     )
