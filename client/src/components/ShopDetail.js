@@ -57,15 +57,19 @@ function ShopDetail({ match }) {
                 },
                 body: JSON.stringify(body)
             }) 
-            setSuccessfulEnquiry(true);
-            setShowEnquiries(false);
-            setTimeout(()=> {
-                setSuccessfulEnquiry(false);
-            }, 2000)
+            successHandler();
         } catch (err) {
             throw new Error ("failed to submit query")
         }
         
+    }
+
+    const successHandler = () => {
+        setSuccessfulEnquiry(true);
+        setShowEnquiries(false);
+        setTimeout(()=> {
+        setSuccessfulEnquiry(false);
+            }, 2000)
     }
 
 
