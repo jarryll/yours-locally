@@ -8,21 +8,27 @@ function Login(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [type, setType] = useState("")
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
     const handleClick = async (e) => {
         e.preventDefault();
      try{
-        const body = {username, password}
+        const body = {username, password,type}
         const response = await fetch("/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
           });
-        if(Cookies.get('id')=== sha256(`${SALT}${Cookies.get('random')}`)){
-            props.history.push(`/`)
+        const verify = await response.json();
+        if(verify.result){
+            setErrorMessage(`${verify.result}`)
+            setUsername('')
+            setPassword('')
+
+        } else {
+            window.location='/'
         }
      } catch (err) {
-        throw new Error ("error")
+        console.log(err)
      }
     }
     const handleUsernameChange = (e) => {
@@ -34,18 +40,22 @@ function Login(props) {
     const handleTypeChange = (e) => {
         setType(e.target.value)
     }
+
+
     return (
      <form onSubmit={(e) => handleClick(e)} >
          <label htmlFor="username">Username</label>
-         <input type="text" required id="username" onChange={(e) => handleUsernameChange(e)}/>
+         <input type="text" required id="username" value={username} onChange={(e) => handleUsernameChange(e)}/>
          <label htmlFor="password">Password</label>
-         <input type="password" required id="password" onChange={(e) => handlePasswordChange(e)}/>
+         <input type="password" required id="password" value={password} onChange={(e) => handlePasswordChange(e)}/>
          <select onChange={(e)=> handleTypeChange(e)}>
          <option value="user">User</option>
          <option value="seller">Seller</option>
          </select>
-        <input type="submit" />
+        <input type="submit" /> <br/> <br/>
+        <h3 style={{color:'red'}}>{errorMessage}</h3>
      </form>
     )
+
 }
 export default withRouter(Login)
