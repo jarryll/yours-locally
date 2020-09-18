@@ -20,5 +20,7 @@ module.exports = (app, allModels) => {
     app.get('/allshops', shopsControllerCallbacks.allShops);
     app.put('/shops/:id',shopsControllerCallbacks.editShop);
     app.delete('/shops/:id',shopsControllerCallbacks.deleteShop);
-    app.post('/enquire', enquiriesControllerCallbacks.sendEnquiry)
+    app.post('/enquire', enquiriesControllerCallbacks.sendEnquiry);
+    app.get('/enquiries/:id', enquiriesControllerCallbacks.displayEnquiries);
+    app.delete('/deleteEnquiry/:id', enquiriesControllerCallbacks.deleteEnquiry);
 };
