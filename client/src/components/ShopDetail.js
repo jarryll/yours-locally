@@ -14,6 +14,7 @@ function ShopDetail({ match }) {
     const [enquiry, setEnquiry] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
+    const [enquirer, setEnquirer] = useState("");
 
     useEffect(()=> {
         fetchShop();
@@ -42,13 +43,22 @@ function ShopDetail({ match }) {
     }
 
     const handleChange = (e) => {
-        e.target.id === "email" ?  setUserEmail(e.target.value) : setEnquiry(e.target.value);
+        switch (e.target.id) {
+            case "email":
+                setUserEmail(e.target.value);
+                break;
+            case "name":
+                setEnquirer(e.target.value);
+                break;
+            default: 
+                setEnquiry(e.target.value)
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const shopId = match.params.id;
-        const body = { selectedItem, userEmail, enquiry, shopId }
+        const body = { selectedItem, enquirer, userEmail, enquiry, shopId }
         try {
             const response = await fetch ('/enquire', {
                 method: "POST",
