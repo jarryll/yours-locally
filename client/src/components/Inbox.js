@@ -33,6 +33,7 @@ function Inbox ({ match }) {
 
     useEffect (()=>{
         fetchEnquiries();
+        setDidDelete(false);
     }, [didDelete])
 
     const enquiryList = enquiries.map((item, index) => {
