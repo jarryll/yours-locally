@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EditShop from './EditShop';
 
 function ShopDetail({ match }) {
 
@@ -37,9 +38,12 @@ function ShopDetail({ match }) {
         <div>
                <h1>You are at {shop.shop_name}</h1>
                <img src={shop.image_url}/>
+               <h3>{shop.about}</h3>
                {allListings}
+               <EditShop shop={shop}/>
+
         </div>
-  
+
     )
 }
 
