@@ -4,10 +4,43 @@ module.exports = (db) => {
         console.log("controllers triggered")
         const value = [req.params.id];
         const result = await db.shops.findShop(value)
-            res.send(result.rows)
-        }  
-    
-     return {
-        getShop
-        }
+        res.send(result.rows)
     }
+
+    let sellerShops = (req, res) => {
+
+        console.log("sellerShops controller triggered");
+
+        const sellerID = req.params.sellerID;
+
+        db.shops.getSellerShops(sellerID, (err, result) => {
+            if (err) {
+                console.log("error at shops controller, sellerShops ---", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+
+    }
+
+    let allShops = (req, res) => {
+
+        console.log("allShops controller triggered");
+
+        db.shops.getAllShops((err, result) => {
+            if (err) {
+                console.log("error at shops controller, allShops ===", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+    }
+
+    return {
+        getShop,
+        sellerShops,
+        allShops
+    }
+}
