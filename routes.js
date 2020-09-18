@@ -11,10 +11,12 @@ module.exports = (app, allModels) => {
     //Routes
     // app.post('/test', accountsControllerCallbacks.test);
     app.get('/shops/:id', shopsControllerCallbacks.getShop);
-    app.post('/shops/register', accountsControllerCallbacks.register);
+    app.post('/seller/register', accountsControllerCallbacks.registerSeller);
+    app.post('/user/register', accountsControllerCallbacks.registerUser);
     app.get('/categories', categoriesControllerCallbacks.getAllCategories);
     app.get('/results/:query', listingsControllerCallbacks.listings);
-    app.post('/login', accountsControllerCallbacks.login);
+    app.post('/seller/login', accountsControllerCallbacks.loginSeller);
+     app.post('/user/login', accountsControllerCallbacks.loginUser);
     app.get('/shops/:id/listings', listingsControllerCallbacks.shopListings);
     app.get('/seller/:sellerID/shops', shopsControllerCallbacks.sellerShops);
     app.get('/allshops', shopsControllerCallbacks.allShops);
