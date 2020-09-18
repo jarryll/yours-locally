@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
+import EditShop from './EditShop';
 
 
 function ShopDetail({ match }) {
@@ -88,14 +89,19 @@ function ShopDetail({ match }) {
         <div>
                <h1>You are at {shop.shop_name}</h1>
                <img src={shop.image_url}/>
+               <h3>{shop.about}</h3>
                {allListings}
 
               { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit}/> : null}
 
               { successfulEnquiry ? <SuccessModal /> : null }
                         
+
+               <EditShop shop={shop}/>
+
+
         </div>
-  
+
     )
 }
 

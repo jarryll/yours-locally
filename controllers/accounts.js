@@ -20,14 +20,15 @@ const login = (request,response) => {
                 response.send(err)
             }else {
               if (result === "no such user!" || result === "wrong password"){
-                response.status(404).send(result)
+                response.send({result})
               } else {
                 console.log(result)
                     const idConfig = result.id;
                       response.cookie('id',sha256(`${SALT}${result.id}`))
+                      response.cookie('type',sha256(`${result.type}`))
                       response.cookie('random', idConfig)
-                      response.cookie('logIn', sha256(`${SALT}true`))//
-                      response.send('loggedIn!')
+                      response.cookie('logIn', sha256(`${SALT}true`))
+                      response.send({id:idConfig})
                 }
         }
         })

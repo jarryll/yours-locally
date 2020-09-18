@@ -1,7 +1,7 @@
 module.exports = (dbPoolInstance) => {
 
     console.log("in listings models")
-    
+
     const getListings = (query, callback) => {
         let text = `SELECT * FROM listings WHERE lower(listing_name) LIKE lower('%${query}%')`;
         dbPoolInstance.query(text, (err, result) => {
