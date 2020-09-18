@@ -16,7 +16,7 @@ module.exports = (dbPoolInstance) => {
     }
 
     const getShopListings = (shopID, callback) => {
-        let query = `SELECT listings.id, listings.listing_name, listings.image_url, listings.listing_details FROM shops INNER JOIN listings ON shops.id = listings.shop_id WHERE shops.id = ${shopID}`;
+        let query = `SELECT listings.id, listings.listing_name, listings.image_url, listings.listing_details, listings.quantity, listings.price FROM shops INNER JOIN listings ON shops.id = listings.shop_id WHERE shops.id = ${shopID}`;
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
                 console.log('error at listings models, getShopListings ---', err.message);
