@@ -4,10 +4,10 @@ import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
-
+import Cookies from 'js-cookie';
 
 function ShopDetail({ match }) {
-
+    const SALT = "homebasedbusiness123"
 //States
     const [shop, setShop] = useState({});
     const [listings, setListings] = useState([]);
@@ -16,10 +16,13 @@ function ShopDetail({ match }) {
     const [enquiry, setEnquiry] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
+    let isSeller = false;
+
 
     useEffect(()=> {
         fetchShop();
         fetchShopListings();
+
     }, []);
 
     const fetchShop = async () => {
@@ -27,6 +30,8 @@ function ShopDetail({ match }) {
         const shop = await fetchShop.json();
         setShop(shop[0])
     }
+
+console.log(shop)
 
     const fetchShopListings = async () => {
         const results = await fetch(`/shops/${match.params.id}/listings`)
@@ -76,18 +81,23 @@ function ShopDetail({ match }) {
     }
 
 
+if(Cookies.get('random') == shop.seller_id){
+            isSeller = true;
+        }
+
+
     let allListings = listings.map((item, index) => {
-        console.log(item)
         return (
             <div key={index}>
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
                 <div>{item.listing_name}</div>
                 <div>{item.listing_details}</div>
-                <EditListing item={item} id={match.params.id}/>
+               {isSeller ? <EditListing item={item} id={match.params.id}/> : null}
                 <button onClick={(e) => handleClickEnquire (e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
             </div>
         )
     })
+
 
 
     return (
@@ -101,8 +111,8 @@ function ShopDetail({ match }) {
 
               { successfulEnquiry ? <SuccessModal /> : null }
 
-              <CreateListing id={shop.id} categoryId={shop.category_id} />
-               <EditShop shop={shop}/>
+              {isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null}
+               {isSeller ? <EditShop shop={shop}/> :null}
 
 
         </div>
