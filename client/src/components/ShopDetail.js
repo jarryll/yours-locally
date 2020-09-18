@@ -3,6 +3,8 @@ import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
 import CreateListing from './CreateListing';
+import EditListing from './EditListing';
+
 
 function ShopDetail({ match }) {
 
@@ -75,17 +77,18 @@ function ShopDetail({ match }) {
 
 
     let allListings = listings.map((item, index) => {
+        console.log(item)
         return (
             <div key={index}>
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
                 <div>{item.listing_name}</div>
                 <div>{item.listing_details}</div>
+                <EditListing item={item} id={match.params.id}/>
                 <button onClick={(e) => handleClickEnquire (e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
             </div>
         )
     })
 
-console.log(shop)
 
     return (
         <div>

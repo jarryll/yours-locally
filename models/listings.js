@@ -43,10 +43,38 @@ module.exports = (dbPoolInstance) => {
         })
 }
 
+const getEditListing = (values,callback) => {
+        let query= `UPDATE listings SET listing_name=$1, listing_details=$2, image_url=$3 WHERE id=$4`
+
+        dbPoolInstance.query(query, values,(err, result) => {
+            if (err) {
+                console.log('error at listings models, getEditListing ---', err.message);
+                callback(null, null);
+            }
+            else {
+                callback(null, result);
+            }
+        })
+}
+
+const getDeleteListing = (id,callback) => {
+        let query= `DELETE FROM listings WHERE id=${id}`
+        dbPoolInstance.query(query, (err, result) => {
+            if (err) {
+                console.log('error at listings models, getDeleteListing ---', err.message);
+                callback(null, null);
+            }
+            else {
+                callback(null, result);
+            }
+        })
+}
 
     return {
         getListings,
         getShopListings,
-        getCreateListing
+        getCreateListing,
+        getEditListing,
+        getDeleteListing
     }
 }

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-const DeleteShop =  ({ id }) => {
-const deleteShop = async id => {
+const DeleteListing =  ({ listingId,id }) => {
+
+
+const handleClick = async listingId => {
     try {
-      const deletedShop = await fetch(`/shops/${id}`, {
+        console.log(listingId)
+      const deletedListing = await fetch(`/listings/delete/${listingId}`, {
         method: "DELETE"
       });
-      window.location = '/';
+      window.location = `/shop/${id}`;
     } catch (err) {
       console.error(err.message);
     }
@@ -18,19 +21,19 @@ const deleteShop = async id => {
         type="button"
         class="btn btn-danger"
         data-toggle="modal"
-        data-target={`#id${id}2`}
+        data-target={`#id${listingId}deletelisting`}
       >
         Delete
       </button>
 
       <div
         class="modal"
-        id={`id${id}2`}
+        id={`id${listingId}deletelisting`}
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete Shop</h4>
+              <h4 class="modal-title">Delete Listing</h4>
               <button
                 type="button"
                 class="close"
@@ -41,7 +44,7 @@ const deleteShop = async id => {
             </div>
 
             <div class="modal-body">
-               <h3>Are you sure you want to delete your shop?</h3>
+               <h3>Are you sure you want to delete your listing?</h3>
             </div>
 
             <div class="modal-footer">
@@ -49,7 +52,7 @@ const deleteShop = async id => {
                 type="button"
                 class="btn btn-danger"
                 data-dismiss="modal"
-                onClick={() => deleteShop(id)}
+                onClick={() => handleClick(listingId)}
               >
                 Delete
               </button>
@@ -70,4 +73,4 @@ const deleteShop = async id => {
 
 }
 
-export default DeleteShop
+export default DeleteListing
