@@ -1,10 +1,12 @@
 module.exports = (app, allModels) => {
 
+
   // Require controller functions
   const accountsControllerCallbacks = require('./controllers/accounts')(allModels);
   const shopsControllerCallbacks = require('./controllers/shops')(allModels);
   const categoriesControllerCallbacks = require('./controllers/categories')(allModels);
   const listingsControllerCallbacks = require('./controllers/listings')(allModels);
+  const enquiriesControllerCallbacks = require('./controllers/enquiries')(allModels);
 
     //Routes
     // app.post('/test', accountsControllerCallbacks.test);
@@ -18,4 +20,5 @@ module.exports = (app, allModels) => {
     app.get('/allshops', shopsControllerCallbacks.allShops);
     app.put('/shops/:id',shopsControllerCallbacks.editShop);
     app.delete('/shops/:id',shopsControllerCallbacks.deleteShop);
+    app.post('/enquire', enquiriesControllerCallbacks.sendEnquiry)
 };

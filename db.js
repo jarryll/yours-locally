@@ -40,11 +40,13 @@ const allAccountsModelsFunction = require('./models/accounts');
 const allShopsModelsFunction = require('./models/shops');
 const allCategoriesModelsFunction = require('./models/categories');
 const allListingsModelsFunction = require('./models/listings');
+const allEnquiriesModelsFunction = require('./models/enquiries');
 
 const accountsModelsObject = allAccountsModelsFunction(pool);
 const shopsModelsObjects = allShopsModelsFunction(pool);
 const categoriesModelsObject = allCategoriesModelsFunction(pool);
 const listingsModelsObject = allListingsModelsFunction(pool);
+const enquiriesModelsObject = allEnquiriesModelsFunction(pool);
 
 
 
@@ -62,7 +64,8 @@ module.exports = {
  accounts: accountsModelsObject,
  shops: shopsModelsObjects,
  categories: categoriesModelsObject,
- listings: listingsModelsObject
+ listings: listingsModelsObject,
+ enquiries: enquiriesModelsObject
 };
 
 

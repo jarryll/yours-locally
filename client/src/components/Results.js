@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Results(props) {
+    
     const [result, setResults] = useState([]);
     useEffect(() => {
         getResults();

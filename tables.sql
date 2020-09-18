@@ -42,7 +42,5 @@ CREATE TABLE IF NOT EXISTS reviews (
     user_id INTEGER,
     created_at TIMESTAMP DEFAULT now()
 );
-
-
-
+CREATE TABLE IF NOT EXISTS enquiries (id SERIAL PRIMARY KEY, item_name TEXT, email_address TEXT NOT NULL, query TEXT, shop_id INTEGER NOT NULL);
 
