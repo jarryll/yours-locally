@@ -32,10 +32,42 @@ module.exports = (db) => {
     })
    }
 
+    let sellerShops = (req, res) => {
 
-     return {
+        console.log("sellerShops controller triggered");
+
+        const sellerID = req.params.sellerID;
+
+        db.shops.getSellerShops(sellerID, (err, result) => {
+            if (err) {
+                console.log("error at shops controller, sellerShops ---", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+
+    }
+
+    let allShops = (req, res) => {
+
+        console.log("allShops controller triggered");
+
+        db.shops.getAllShops((err, result) => {
+            if (err) {
+                console.log("error at shops controller, allShops ===", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+    }
+
+    return {
         getShop,
+        sellerShops,
+        allShops,
         editShop,
         deleteShop
-        }
     }
+}
