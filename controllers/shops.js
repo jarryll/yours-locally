@@ -50,9 +50,7 @@ module.exports = (db) => {
     }
 
     let allShops = (req, res) => {
-
         console.log("allShops controller triggered");
-
         db.shops.getAllShops((err, result) => {
             if (err) {
                 console.log("error at shops controller, allShops ===", err.message);
@@ -63,11 +61,25 @@ module.exports = (db) => {
         })
     }
 
+    let createShop = (request,response) => {
+        let {id, selectedCategories,shop_name,image_url,about} = request.body;
+        console.log(request.body)
+        db.shops.getCreateShop(id, selectedCategories,shop_name,image_url,about,(err,result)=>{
+            if(err){
+                console.log(err)
+            } else {
+                response.send("shop created!")
+            }
+        })
+    }
+
+
     return {
         getShop,
         sellerShops,
         allShops,
         editShop,
-        deleteShop
+        deleteShop,
+        createShop
     }
 }

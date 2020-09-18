@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CreateShop from './CreateShop'
 
 function SellerShops(props) {
 
@@ -12,6 +13,7 @@ function SellerShops(props) {
     const getSellerShops = async () => {
 
         const { sellerId } = props;
+        console.log(sellerId)
 
         const results = await fetch(`/seller/${sellerId}/shops`);
         const sellerShops = await results.json();
@@ -35,6 +37,8 @@ function SellerShops(props) {
             <div>Your shops</div>
             <br />
             {allShops}
+            <br />
+            <CreateShop id={props.sellerId}/>
         </div>
     )
 }

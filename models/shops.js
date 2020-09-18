@@ -50,12 +50,26 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
+    let getCreateShop = (id, selectedCategories,shop_name,image_url,about,callback) => {
+        about = about.replace(/[\"\'\`]/g, "");
+        console.log(selectedCategories)
+        selectedCategories = parseInt(selectedCategories)
+        id= parseInt(id)
+        console.log(selectedCategories,id)
+        let query = `INSERT INTO shops (shop_name,image_url,about,category_id,seller_id) VALUES('${shop_name}','${image_url}','${about}',${selectedCategories},${id})`
+            dbPoolInstance.query(query,(err,result)=>{
+            callback(err,result)
+    })
+    }
+
+
     return {
         findShop,
         getSellerShops,
         getAllShops,
         getEditShop,
-        getDeleteShop
+        getDeleteShop,
+        getCreateShop
     }
 }
 

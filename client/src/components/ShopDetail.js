@@ -57,12 +57,12 @@ function ShopDetail({ match }) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
-            }) 
+            })
             successHandler();
         } catch (err) {
             throw new Error ("failed to submit query")
         }
-        
+
     }
 
     const successHandler = () => {
@@ -75,6 +75,7 @@ function ShopDetail({ match }) {
 
 
     let allListings = listings.map((item, index) => {
+        console.log(item)
         return (
             <div key={index}>
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
@@ -95,7 +96,7 @@ function ShopDetail({ match }) {
               { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit}/> : null}
 
               { successfulEnquiry ? <SuccessModal /> : null }
-                        
+
 
                <EditShop shop={shop}/>
 
