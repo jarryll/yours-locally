@@ -28,8 +28,25 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
+    const getCreateListing = (id, categoryId, listing_name,listing_details,image_url,callback) => {
+        let values = [id, categoryId, listing_name,listing_details,image_url]
+        let query= `INSERT INTO listings (listing_name, listing_details, image_url, shop_id, category_id) VALUES($3,$4,$5,$1,$2)`
+
+        dbPoolInstance.query(query, values,(err, result) => {
+            if (err) {
+                console.log('error at listings models, getCreateListing ---', err.message);
+                callback(null, null);
+            }
+            else {
+                callback(null, result);
+            }
+        })
+}
+
+
     return {
         getListings,
-        getShopListings
+        getShopListings,
+        getCreateListing
     }
 }

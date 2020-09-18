@@ -22,4 +22,5 @@ module.exports = (app, allModels) => {
     app.delete('/shops/:id',shopsControllerCallbacks.deleteShop);
     app.post('/enquire', enquiriesControllerCallbacks.sendEnquiry);
     app.post('/shops/create', shopsControllerCallbacks.createShop);
+    app.post('/listings/create',listingsControllerCallbacks.createListing);
 };

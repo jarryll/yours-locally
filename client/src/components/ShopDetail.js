@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
-
+import CreateListing from './CreateListing';
 
 function ShopDetail({ match }) {
 
@@ -75,7 +75,6 @@ function ShopDetail({ match }) {
 
 
     let allListings = listings.map((item, index) => {
-        console.log(item)
         return (
             <div key={index}>
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
@@ -85,6 +84,8 @@ function ShopDetail({ match }) {
             </div>
         )
     })
+
+console.log(shop)
 
     return (
         <div>
@@ -97,7 +98,7 @@ function ShopDetail({ match }) {
 
               { successfulEnquiry ? <SuccessModal /> : null }
 
-
+              <CreateListing id={shop.id} categoryId={shop.category_id} />
                <EditShop shop={shop}/>
 
 

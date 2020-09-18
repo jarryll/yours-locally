@@ -28,8 +28,22 @@ module.exports = (db) => {
         })
     }
 
+   const createListing = (request,response) => {
+    let {id, categoryId, listing_name,listing_details,image_url} = request.body;
+    db.listings.getCreateListing(id, categoryId, listing_name,listing_details,image_url,(err,result)=>{
+            if (err) {
+                console.log('error at listings controller, shopListings ---', err.message);
+            }
+            else {
+                response.send("Listing Created!");
+            }
+    })
+   }
+
+
     return {
         listings,
-        shopListings
+        shopListings,
+        createListing
     }
 }
