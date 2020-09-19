@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Logout from './Logout';
+import  '../App.css';
 
 function Nav({match}) {
 
@@ -16,56 +17,28 @@ let sellerId = Cookies.get('random');
 console.log(match)
     if(loggedIn){
         return (
-        <nav>
-            <ul className="nav-links">
-                <h3>Logo goes here</h3>
-                <Link to = '/'>
-                    <li>Home</li>
-                </Link>
-                <Link to ='/shopByCategory'>
-                    <li>Shop by category</li>
-                </Link>
+<nav class="site-header sticky-top py-1 bg-dark">
+  <div class="container d-flex flex-column flex-md-row justify-content-between text-light">
+    <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
+    <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+    {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
+    <Logout />
 
-                {sellerId ? <Link to ={`/inbox/${sellerId}`}>
-                                    <li>Inbox</li>
-                                </Link> : null}
-
-                        <li><Logout /></li>
-
-
-            </ul>
-        </nav>
+  </div>
+</nav>
     )
     } else if(!loggedIn){
         return (
-            <nav>
-                <ul className="nav-links">
-                    <h3>Logo goes here</h3>
-                    <Link to = '/'>
-                        <li>Home</li>
-                    </Link>
-
-                    <Link to ='/shopByCategory'>
-                        <li>Shop by category</li>
-                    </Link>
-
-                    <Link to ='/seller/login'>
-                        <li>Sign in as Seller</li>
-                    </Link>
-
-                    <Link to ='/user/login'>
-                        <li>Sign in as User</li>
-                    </Link>
-
-                    <Link to="/seller/register">
-                        <li>Register as Seller</li>
-                    </Link>
-
-                    <Link to="/user/register">
-                        <li>Register as User</li>
-                    </Link>
-                </ul>
-            </nav>
+    <nav class="site-header sticky-top py-1 bg-dark">
+      <div class="container d-flex flex-column flex-md-row justify-content-between text-light">
+        <Link to='/' className="py-2 d-none d-md-inline-block text-light"  id="link1">Home</Link>
+        <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+        <Link to ='/seller/login' className="py-2 d-none d-md-inline-block text-light"  id="link3">Sign in as Seller</Link>
+        <Link to ='/user/login' className="py-2 d-none d-md-inline-block text-light"  id="link4">Sign in as User</Link>
+        <Link to="/seller/register" className="py-2 d-none d-md-inline-block text-light"  id="link5">Register as Seller</Link>
+        <Link to="/user/register" className="py-2 d-none d-md-inline-block text-light"  id="link6">Register as User</Link>
+      </div>
+    </nav>
         )
     }
 

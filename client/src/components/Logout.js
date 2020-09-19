@@ -15,7 +15,7 @@ function Logout(props) {
    }
 
     return(
-            <button onClick={(e) => handleClick(e)}>Log Out</button>
+            <button type="button" className="btn btn-warning"onClick={(e) => handleClick(e)}>Log Out</button>
         )
 }
 

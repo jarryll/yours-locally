@@ -35,21 +35,24 @@ function Home() {
     }
 
     return (
-        <div>
-            <h1>You are HOME</h1>
-
-            <Search
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-light">Yours Locally.</h1>
+    <p class="lead font-weight-lighter">Hover over the search icon to begin a search</p>
+    <Search
                 onChangeHandler={onChangeHandler}
                 inputHandler={inputHandler}
                 input={input}
             />
-            <br /><br />
+                <br /><br />
             {loggedIn && !hasSearched ? <SellerShops sellerId={sellerId} /> : null}
             <br /><br />
             {!hasSearched ? <AllShops /> : null}
             <br /><br />
             {hasSearched ? <Results query={query} /> : null}
-        </div>
+  </div>
+
+</div>
     )
 }
 export default Home
