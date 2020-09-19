@@ -1,16 +1,18 @@
+CREATE TABLE IF NOT EXISTS favourites (
+    id SERIAL PRIMARY KEY,
+    shop_id INTEGER
+);
 CREATE TABLE IF NOT EXISTS sellers (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
-    hashed_password TEXT NOT NULL
+    hashed_password TEXT NOT NULL,
+    favourites INTEGER REFERENCES favourites(id)
 );
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
-    hashed_password TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS favourites (
-    id SERIAL PRIMARY KEY,
-    shop_id INTEGER
+    hashed_password TEXT NOT NULL,
+    favourites INTEGER REFERENCES favourites(id)
 );
 CREATE TABLE IF NOT EXISTS shops (
     id SERIAL PRIMARY KEY,

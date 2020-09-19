@@ -6,6 +6,7 @@ module.exports = (app, allModels) => {
   const categoriesControllerCallbacks = require('./controllers/categories')(allModels);
   const listingsControllerCallbacks = require('./controllers/listings')(allModels);
   const enquiriesControllerCallbacks = require('./controllers/enquiries')(allModels);
+  const favouritesControllerCallbacks = require('./controllers/favourites')(allModels);
  
   //Routes
     app.get('/shops/:id', shopsControllerCallbacks.getShop);
@@ -28,5 +29,7 @@ module.exports = (app, allModels) => {
     app.get('/category/:id', categoriesControllerCallbacks.categoryShops);
     app.get('/enquiries/:id', enquiriesControllerCallbacks.displayEnquiries);
     app.delete('/deleteEnquiry/:id', enquiriesControllerCallbacks.deleteEnquiry);
+    app.get('/favourites/seller/:id', favouritesControllerCallbacks.sellerFavourites);
+    app.get('/favourites/user/:id', favouritesControllerCallbacks.userFavourites);
 
 };
