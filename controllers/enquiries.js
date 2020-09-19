@@ -1,16 +1,16 @@
 module.exports = (db) => {
 
     const sendEnquiry = async (req, res) => {
-        const { selectedItem, enquirer, userEmail, enquiry, shopId } = req.body
-        const queryValues = [selectedItem, enquirer, userEmail, enquiry, shopId];
+        const { listing_name,name,email,enquiry,id } = req.body
+        const queryValues = [listing_name,name,email,enquiry,id];
         try {
             const result = await db.enquiries.addEnquiry(queryValues)
             res.send("success")
         } catch (err) {
             throw new Error ("failed to send enquiry")
         }
-      
-    }  
+
+    }
 
     const displayEnquiries = async (req, res) => {
         const queryValues = [req.params.id];
@@ -30,10 +30,10 @@ module.exports = (db) => {
         } catch (err) {
             throw new Error ("failed to delete enquiry")
         }
-        
+
     }
 
-    
+
      return {
         sendEnquiry,
         displayEnquiries,

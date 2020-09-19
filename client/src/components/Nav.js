@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Logout from './Logout';
 
-function Nav() {
+function Nav({match}) {
 
 const [loggedIn, setLoggedIn] = useState(false)
 useEffect(() => {
@@ -12,7 +12,8 @@ useEffect(() => {
     } else setLoggedIn(false)
 }, []);
 
-
+let sellerId = Cookies.get('random');
+console.log(match)
     if(loggedIn){
         return (
         <nav>
@@ -24,6 +25,11 @@ useEffect(() => {
                 <Link to ='/shopByCategory'>
                     <li>Shop by category</li>
                 </Link>
+
+                {sellerId ? <Link to ={`/inbox/${sellerId}`}>
+                                    <li>Inbox</li>
+                                </Link> : null}
+
                         <li><Logout /></li>
 
 

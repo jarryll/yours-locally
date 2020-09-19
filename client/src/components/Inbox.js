@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 function Inbox ({ match }) {
 
@@ -13,7 +14,7 @@ function Inbox ({ match }) {
         } catch (err) {
             console.log(err.stack)
         }
-       
+
     }
 
     const handleDelete = async (e) => {
@@ -45,9 +46,17 @@ function Inbox ({ match }) {
                     <td>{item.email_address}</td>
                     <td>{item.query}</td>
                     <td><button id={item.id} onClick={(e)=>handleDelete(e)}>Delete</button></td>
-                </tr>       
+                </tr>
         )
     })
+
+if(Cookies.get('random') !== match.params.seller_id){
+    return (
+        <div>
+            <h1>You are at the wrong inbox!!!</h1>
+        </div>
+        )
+}
 
     return (
         <div className="container">
@@ -64,12 +73,12 @@ function Inbox ({ match }) {
                  </tr>
 
                  </thead>
-                 
+
                  {enquiryList}
              </table>
 
         </div>
-       
+
     )
 }
 

@@ -21,9 +21,9 @@ if( process.env.DATABASE_URL ){
 
 }else{
   configs = {
-    user: 'jarryl',
+    user: 'alvischew',
     host: '127.0.0.1',
-    database: 'hbb',
+    database: 'seiproj3test',
     port: 5432
   };
 }
