@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS listings (
     listing_name TEXT,
     listing_details TEXT,
     image_url TEXT,
+    quantity INTEGER,
+    price NUMERIC (6,2),
     shop_id INTEGER,
     category_id INTEGER,
     created_at TIMESTAMP DEFAULT now()
@@ -42,9 +44,11 @@ CREATE TABLE IF NOT EXISTS reviews (
     user_id INTEGER,
     created_at TIMESTAMP DEFAULT now()
 );
-CREATE TABLE IF NOT EXISTS enquiries (id SERIAL PRIMARY KEY, item_name TEXT, enquirer_name TEXT, email_address TEXT NOT NULL, query TEXT, shop_id INTEGER NOT NULL);
-
-
-SELECT enquiries.item_name, enquiries.email_address, enquiries.enquirer_name, enquiries.query, shops.shop_name FROM enquiries INNER JOIN shops ON enquiries.shop_id = shops.id INNER JOIN sellers ON sellers.id = shops.seller_id WHERE sellers.id = 2;
-
-INSERT INTO listings (listing_name, listing_details, shop_id) VALUES ('testItem', $$test item for Alvis's second shop$$, 4);
+CREATE TABLE IF NOT EXISTS enquiries (
+    id SERIAL PRIMARY KEY, 
+    item_name TEXT, 
+    enquirer_name TEXT, 
+    email_address TEXT NOT NULL, 
+    query TEXT, 
+    shop_id INTEGER NOT NULL
+);
