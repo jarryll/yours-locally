@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
-
+import CreateListing from './CreateListing';
+import EditListing from './EditListing';
+import Cookies from 'js-cookie';
 
 function ShopDetail({ match }) {
 
-    //States
+    //STATES
     const [shop, setShop] = useState({});
     const [listings, setListings] = useState([]);
     const [showEnquiries, setShowEnquiries] = useState(false);
@@ -15,12 +17,23 @@ function ShopDetail({ match }) {
     const [userEmail, setUserEmail] = useState("");
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
     const [enquirer, setEnquirer] = useState("");
+  
 
+    // FOR COOKIES
+    let isSeller = false;
+    
+    // COMPONENT DID MOUNT - FETCH SHOP AND LISTINGS
     useEffect(() => {
         fetchShop();
         fetchShopListings();
     }, []);
+  
+    // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
+     if(Cookies.get('random') == shop.seller_id){
+            isSeller = true;
+        }
 
+    // HELPER FUNCTIONS  
     const fetchShop = async () => {
         const fetchShop = await fetch(`/shops/${match.params.id}`)
         const shop = await fetchShop.json();
@@ -83,8 +96,9 @@ function ShopDetail({ match }) {
         }, 2000)
     }
 
-
-    let allListings = listings.map((item, index) => {
+ 
+    // Function to map results of the fetch request
+    const allListings = listings.map((item, index) => {
         return (
             <div key={index}>
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
@@ -92,26 +106,27 @@ function ShopDetail({ match }) {
                 <div>{item.listing_details}</div>
                 <div>Item(s) Left: {item.quantity}</div>
                 <div>${item.price}</div>
-                <button onClick={(e) => handleClickEnquire(e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
+               {isSeller ? <EditListing item={item} id={match.params.id}/> : null}
+                <button onClick={(e) => handleClickEnquire (e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
             </div>
         )
     })
 
+  
     return (
         <div>
             <h1>You are at {shop.shop_name}</h1>
             <img src={shop.image_url} />
             <h3>{shop.about}</h3>
             {allListings}
+               
+            
+            { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit} /> : null }
+            { successfulEnquiry ? <SuccessModal /> : null }
 
-            { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit} /> : null}
-
-            { successfulEnquiry ? <SuccessModal /> : null}
-
-
-            <EditShop shop={shop} />
-
-
+            { isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null }
+            { isSeller ? <EditShop shop={shop}/> :null }
+            
         </div>
     )
 }

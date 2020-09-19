@@ -43,14 +43,21 @@ useEffect(() => {
                         <li>Shop by category</li>
                     </Link>
 
-                    <Link to ='/login'>
-                        <li>Sign in</li>
+                    <Link to ='/seller/login'>
+                        <li>Sign in as Seller</li>
                     </Link>
 
-                    <Link to="/register">
-                        <li>Register</li>
+                    <Link to ='/user/login'>
+                        <li>Sign in as User</li>
                     </Link>
 
+                    <Link to="/seller/register">
+                        <li>Register as Seller</li>
+                    </Link>
+
+                    <Link to="/user/register">
+                        <li>Register as User</li>
+                    </Link>
                 </ul>
             </nav>
         )

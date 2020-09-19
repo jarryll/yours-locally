@@ -28,8 +28,51 @@ module.exports = (db) => {
         })
     }
 
+   const createListing = (request,response) => {
+    let {id, categoryId, listing_name,listing_details,image_url} = request.body;
+    db.listings.getCreateListing(id, categoryId, listing_name,listing_details,image_url,(err,result)=>{
+            if (err) {
+                console.log('error at listings controller, shopListings ---', err.message);
+            }
+            else {
+                response.send("Listing Created!");
+            }
+    })
+   }
+
+   const editListing = (request,response) => {
+    let {listing_name,listing_details,image_url, itemId} = request.body;
+    let values = [listing_name,listing_details,image_url, itemId];
+    db.listings.getEditListing(values,(err,result)=>{
+            if (err) {
+                console.log('error at listings controller, shopListings ---', err.message);
+            }
+            else {
+                response.send("Listing Edited!");
+            }
+    })
+   }
+
+   const deleteListing = (request,response) => {
+    let {id} = request.params
+    console.log(request.params)
+
+    db.listings.getDeleteListing(id,(err,result)=>{
+            if (err) {
+                console.log('error at listings controller, shopListings ---', err.message);
+            }
+            else {
+                response.send("Listing Deleted!");
+            }
+    })
+   }
+
+
     return {
         listings,
-        shopListings
+        shopListings,
+        createListing,
+        editListing,
+        deleteListing
     }
 }
