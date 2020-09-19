@@ -9,6 +9,7 @@ import RegisterUser from './components/RegisterUser';
 import UserLogin from './components/UserLogin';
 import Logout from './components/Logout';
 import ShopDetail from './components/ShopDetail';
+import Inbox from './components/Inbox';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/user/login" component={UserLogin} />
           <Route path="/user/register" component={RegisterUser} />
           <Route path="/shop/:id" component={ShopDetail}/>
+          <Route path="/inbox/:seller_id" component={Inbox} />
           <Route path='/logout' component={Logout} />
         </Switch>
      </div>
