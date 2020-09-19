@@ -6,7 +6,7 @@ import EditShop from './EditShop';
 
 function ShopDetail({ match }) {
 
-//States
+    //States
     const [shop, setShop] = useState({});
     const [listings, setListings] = useState([]);
     const [showEnquiries, setShowEnquiries] = useState(false);
@@ -16,7 +16,7 @@ function ShopDetail({ match }) {
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
     const [enquirer, setEnquirer] = useState("");
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchShop();
         fetchShopListings();
     }, []);
@@ -60,27 +60,27 @@ function ShopDetail({ match }) {
         const shopId = match.params.id;
         const body = { selectedItem, enquirer, userEmail, enquiry, shopId }
         try {
-            const response = await fetch ('/enquire', {
+            const response = await fetch('/enquire', {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
-            }) 
+            })
             successHandler();
         } catch (err) {
-            throw new Error ("failed to submit query")
+            throw new Error("failed to submit query")
         }
-        
+
     }
 
     const successHandler = () => {
         setSuccessfulEnquiry(true);
         setShowEnquiries(false);
-        setTimeout(()=> {
-        setSuccessfulEnquiry(false);
-            }, 2000)
+        setTimeout(() => {
+            setSuccessfulEnquiry(false);
+        }, 2000)
     }
 
 
@@ -90,28 +90,29 @@ function ShopDetail({ match }) {
                 <div><img src={item.image_url} alt={item.listing_name} /></div>
                 <div>{item.listing_name}</div>
                 <div>{item.listing_details}</div>
-                <button onClick={(e) => handleClickEnquire (e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
+                <div>Item(s) Left: {item.quantity}</div>
+                <div>${item.price}</div>
+                <button onClick={(e) => handleClickEnquire(e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
             </div>
         )
     })
 
     return (
         <div>
-               <h1>You are at {shop.shop_name}</h1>
-               <img src={shop.image_url}/>
-               <h3>{shop.about}</h3>
-               {allListings}
+            <h1>You are at {shop.shop_name}</h1>
+            <img src={shop.image_url} />
+            <h3>{shop.about}</h3>
+            {allListings}
 
-              { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit}/> : null}
+            { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit} /> : null}
 
-              { successfulEnquiry ? <SuccessModal /> : null }
-                        
+            { successfulEnquiry ? <SuccessModal /> : null}
 
-               <EditShop shop={shop}/>
+
+            <EditShop shop={shop} />
 
 
         </div>
-
     )
 }
 
