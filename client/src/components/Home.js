@@ -43,7 +43,7 @@ function Home() {
                 inputHandler={inputHandler}
                 input={input}
             />
-                <br /><div style={{borderBottom: '0.5px solid #CBCBCB'}}></div>
+                <br />
             {loggedIn && !hasSearched ? <SellerShops sellerId={sellerId} /> : null}
             <br /><div style={{borderBottom: '0.5px solid #CBCBCB'}}></div>
             {!hasSearched ? <AllShops /> : null}

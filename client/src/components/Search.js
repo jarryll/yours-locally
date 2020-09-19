@@ -3,6 +3,11 @@ import '../App.css'
 
 function Search(props) {
     let { onChangeHandler, inputHandler, input } = props
+    const handleKeyPress = (event) => {
+      if(event.key === 'Enter'){
+        inputHandler(event)
+      }
+    }
     return (
     <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
@@ -14,6 +19,9 @@ function Search(props) {
                 name="searchInput"
                 value={input}
                 onChange={(e) => {onChangeHandler(e)}}
+                onKeyPress={(event)=>{
+                        handleKeyPress(event)
+                    }}
                 />
                 <button
                 class="search_icon"
@@ -21,7 +29,8 @@ function Search(props) {
                     e.persist()
                     e.preventDefault()
                     inputHandler(e)
-                }}><i class="fas fa-search"></i></button>
+                }}
+                ><i class="fas fa-search"></i></button>
         </div>
       </div>
     </div>
