@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
-import EnquiriesTest from './EnquiriesTest';
+import Enquiries from './Enquiries';
 import Cookies from 'js-cookie';
 
 function ShopDetail({ match }) {
@@ -62,8 +61,7 @@ function ShopDetail({ match }) {
                 <div>Item(s) Left: {item.quantity}</div>
                 <div>${item.price}</div>
                {isSeller ? <EditListing item={item} id={match.params.id}/> : null}
-                {successfulEnquiry ? null : <EnquiriesTest item={item} id={match.params.id} />}
-              { successfulEnquiry ? <SuccessModal /> : null }
+               <Enquiries item={item} id={match.params.id} />
             </div>
         )
     })
