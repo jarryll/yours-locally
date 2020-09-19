@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
-import Cookies from 'js-cookie';
 
 function ShopDetail({ match }) {
 
@@ -17,21 +18,23 @@ function ShopDetail({ match }) {
     const [userEmail, setUserEmail] = useState("");
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
     const [enquirer, setEnquirer] = useState("");
-  
+    const [reviews, setReviews] = useState([]);
+
 
     // FOR COOKIES
     let isSeller = false;
-    
+
     // COMPONENT DID MOUNT - FETCH SHOP AND LISTINGS
     useEffect(() => {
         fetchShop();
         fetchShopListings();
+        fetchShopReviews();
     }, []);
-  
+
     // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
-     if(Cookies.get('random') == shop.seller_id){
-            isSeller = true;
-        }
+    if (Cookies.get('random') == shop.seller_id) {
+        isSeller = true;
+    }
 
     // HELPER FUNCTIONS  
     const fetchShop = async () => {
@@ -44,6 +47,12 @@ function ShopDetail({ match }) {
         const results = await fetch(`/shops/${match.params.id}/listings`)
         const allListings = await results.json();
         setListings(allListings);
+    }
+
+    const fetchShopReviews = async () => {
+        const results = await fetch(`/shops/${match.params.id}/reviews`);
+        const reviews = await results.json();
+        setReviews(reviews);
     }
 
     const handleClickEnquire = (e) => {
@@ -63,7 +72,7 @@ function ShopDetail({ match }) {
             case "name":
                 setEnquirer(e.target.value);
                 break;
-            default: 
+            default:
                 setEnquiry(e.target.value)
         }
     }
@@ -96,7 +105,7 @@ function ShopDetail({ match }) {
         }, 2000)
     }
 
- 
+
     // Function to map results of the fetch request
     const allListings = listings.map((item, index) => {
         return (
@@ -106,27 +115,44 @@ function ShopDetail({ match }) {
                 <div>{item.listing_details}</div>
                 <div>Item(s) Left: {item.quantity}</div>
                 <div>${item.price}</div>
-               {isSeller ? <EditListing item={item} id={match.params.id}/> : null}
-                <button onClick={(e) => handleClickEnquire (e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
+                {isSeller ? <EditListing item={item} id={match.params.id} /> : null}
+                <button onClick={(e) => handleClickEnquire(e)} id={item.listing_name} type="button" className="btn btn-primary">Click me to enquire!</button>
             </div>
         )
     })
 
-  
+    // map results of all reviews for this shop 
+    const allReviews = reviews.map((item, index) => {
+        return (
+            <div key={index}>
+                <div>{item.username}</div>
+                <div>{item.rating}</div>
+                <div>{item.review}</div>
+                <div>{item.created_at}</div>
+                <br />
+            </div>
+        )
+    })
+
     return (
         <div>
             <h1>You are at {shop.shop_name}</h1>
             <img src={shop.image_url} />
             <h3>{shop.about}</h3>
             {allListings}
-               
-            
-            { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit} /> : null }
-            { successfulEnquiry ? <SuccessModal /> : null }
 
-            { isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null }
-            { isSeller ? <EditShop shop={shop}/> :null }
-            
+
+            { showEnquiries ? <Enquiries selectedItem={selectedItem} handleClose={handleClose} handleChange={handleChange} handleSubmit={handleSubmit} /> : null}
+            { successfulEnquiry ? <SuccessModal /> : null}
+
+            { isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null}
+
+            <br />
+            <h5>Reviews</h5>
+            {allReviews}
+
+            { isSeller ? <EditShop shop={shop} /> : null}
+
         </div>
     )
 }

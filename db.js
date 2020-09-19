@@ -3,7 +3,7 @@ const url = require('url');
 
 var configs;
 
-if( process.env.DATABASE_URL ){
+if (process.env.DATABASE_URL) {
 
   const params = url.parse(process.env.DATABASE_URL);
   const auth = params.auth.split(':');
@@ -15,15 +15,15 @@ if( process.env.DATABASE_URL ){
     port: params.port,
     database: params.pathname.split('/')[1],
     ssl: {
-        rejectUnauthorized: false
+      rejectUnauthorized: false
     }
   };
 
-}else{
+} else {
   configs = {
-    user: 'jarryl',
+    user: 'wongjoey',
     host: '127.0.0.1',
-    database: 'hbb',
+    database: 'Test',
     port: 5432
   };
 }
@@ -41,14 +41,14 @@ const allShopsModelsFunction = require('./models/shops');
 const allCategoriesModelsFunction = require('./models/categories');
 const allListingsModelsFunction = require('./models/listings');
 const allEnquiriesModelsFunction = require('./models/enquiries');
+const allReviewsModelsFunction = require('./models/reviews');
 
 const accountsModelsObject = allAccountsModelsFunction(pool);
 const shopsModelsObjects = allShopsModelsFunction(pool);
 const categoriesModelsObject = allCategoriesModelsFunction(pool);
 const listingsModelsObject = allListingsModelsFunction(pool);
 const enquiriesModelsObject = allEnquiriesModelsFunction(pool);
-
-
+const reviewsModelsObject = allReviewsModelsFunction(pool);
 
 
 module.exports = {
@@ -58,14 +58,15 @@ module.exports = {
   },
 
   // get a reference to end the connection pool at server end
-  pool:pool,
+  pool: pool,
 
   // users: userModelsObject,
- accounts: accountsModelsObject,
- shops: shopsModelsObjects,
- categories: categoriesModelsObject,
- listings: listingsModelsObject,
- enquiries: enquiriesModelsObject
+  accounts: accountsModelsObject,
+  shops: shopsModelsObjects,
+  categories: categoriesModelsObject,
+  listings: listingsModelsObject,
+  enquiries: enquiriesModelsObject,
+  reviews: reviewsModelsObject
 };
 
 
