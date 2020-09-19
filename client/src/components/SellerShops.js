@@ -22,8 +22,8 @@ function SellerShops(props) {
 
     let allShops = sellerShops.map((item, index) => {
         return (
-                <div class="card mb-4 col-3 mr-5 ml-5" style={{display:'inline-block',maxHeight:'600px'}}>
-              <img class="card-img-top" src={item.image_url} alt="Card image cap" style={{maxHeight:'200px'}}/>
+                <div class="card mb-4 col-3 mr-5 ml-5 d-inline-flex align-items-center" style={{display:'inline-block',maxHeight:'600px'}}>
+              <div style={{height:'400px'}} class="d-flex"><img class="card-img-top" src={item.image_url} alt="Card image cap" style={{objectFit:'fill', margin:'auto 0',alignSelf:'center'}}/></div>
               <div class="card-body mx-auto text-center">
                 <h5 class="card-title">{item.shop_name}</h5>
                 <p class="card-text"><small class="text-muted">{item.about}</small></p>
@@ -37,9 +37,8 @@ function SellerShops(props) {
         <div>
             <h3 class ="font-weight-light text-center mt-4">Your shops</h3>
             <br />
-            <div class="row offset-md-1">
+            <div class="row  d-flex justify-content-center">
             {allShops}
-
             </div>
             <br />
             <div class="text-center"><CreateShop id={props.sellerId}/></div>
