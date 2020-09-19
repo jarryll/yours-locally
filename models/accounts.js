@@ -31,6 +31,7 @@ const getRegister = (username,password,callback)=>{
     })
 }
 
+
     return {
         getTest,
         getLogin,

@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import ShopDetail from './components/ShopDetail';
+import Inbox from './components/Inbox';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/shop/:id" component={ShopDetail}/>
+          <Route path="/inbox/:seller_id" component={Inbox} />
           <Route path='/logout' component={Logout} />
         </Switch>
      </div>
