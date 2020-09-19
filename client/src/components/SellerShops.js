@@ -22,23 +22,27 @@ function SellerShops(props) {
 
     let allShops = sellerShops.map((item, index) => {
         return (
-            <Link to={`/shop/${item.id}`} key={index}>
-                <div>
-                    <div><img src={item.image_url} alt={item.shop_name} /></div>
-                    <div>{item.shop_name}</div>
-                </div>
-            </Link>
+                <div class="card mb-4 col-3 mr-5 ml-5" style={{display:'inline-block',maxHeight:'600px'}}>
+              <img class="card-img-top" src={item.image_url} alt="Card image cap" style={{maxHeight:'200px'}}/>
+              <div class="card-body mx-auto text-center">
+                <h5 class="card-title">{item.shop_name}</h5>
+                <p class="card-text"><small class="text-muted">{item.about}</small></p>
+                <Link to={`/shop/${item.id}`} key={index} className="btn btn-primary ">Visit Me</Link>
+              </div>
+            </div>
         )
     })
 
     return (
         <div>
-            <br /><br />
-            <div>Your shops</div>
+            <h3 class ="font-weight-light text-center mt-4">Your shops</h3>
             <br />
+            <div class="row offset-md-1">
             {allShops}
+
+            </div>
             <br />
-            <CreateShop id={props.sellerId}/>
+            <div class="text-center"><CreateShop id={props.sellerId}/></div>
         </div>
     )
 }
