@@ -43,9 +43,9 @@ function Home() {
                 inputHandler={inputHandler}
                 input={input}
             />
-                <br /><br />
+                <br /><div style={{borderBottom: '0.5px solid #CBCBCB'}}></div>
             {loggedIn && !hasSearched ? <SellerShops sellerId={sellerId} /> : null}
-            <br /><br />
+            <br /><div style={{borderBottom: '0.5px solid #CBCBCB'}}></div>
             {!hasSearched ? <AllShops /> : null}
             <br /><br />
             {hasSearched ? <Results query={query} /> : null}
