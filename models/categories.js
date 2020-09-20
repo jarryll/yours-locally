@@ -14,7 +14,7 @@ module.exports = (dbPoolInstance) => {
 
     let getCategoryShops = (categoryId, callback) => {
 
-        let query = `SELECT shops.id, shops.shop_name, shops.image_url FROM categories INNER JOIN shops ON categories.id = shops.category_id WHERE categories.id = ${categoryId}`;
+        let query = `SELECT shops.id, shops.shop_name, shops.image_url,categories.category_name FROM categories INNER JOIN shops ON categories.id = shops.category_id WHERE categories.id = ${categoryId}`;
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {

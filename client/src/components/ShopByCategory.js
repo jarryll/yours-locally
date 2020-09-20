@@ -28,16 +28,36 @@ function ShopByCategory() {
     let allCategories = categories.map((item, index) => {
 
         return (
-            <div key={index} id={item.id} onClick={onClickHandler}>
+            <button type="button" key={index} id={item.id} onClick={onClickHandler} class="btn btn-secondary text-capitalize">
                 {item.category_name}
-            </div>
+            </button>
         )
     })
 
+    let categoriesDropdown = categories.map((item,index)=>{
+        return(
+            <div key={index} id={item.id} onClick={onClickHandler} class="dropdown-item text-capitalize">
+                {item.category_name}
+            </div>
+            )
+    })
+
+
     return (
         <div>
-            <h1>You are at SHOP BY CATEGORY</h1>
+            <h2 class="font-weight-light text-center mt-4" >You may also search by categories</h2>
+            <p class="lead font-weight-lighter text-center">We understand the search bar is not for everyone... </p>
+            <div class="btn-group d-flex justify-content-center" role="group" aria-label="Button group with nested dropdown" style={{width:'600px', margin:'0 auto'}}>
             {allCategories}
+              <div class="btn-group" role="group" style={{cursor:'pointer'}}>
+                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categories
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    {categoriesDropdown}
+                </div>
+              </div>
+            </div>
             {hasSelected ? <CategoryShops categoryId={categoryId} /> : null}
         </div>
     )
