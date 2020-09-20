@@ -33,10 +33,8 @@ console.log(match)
       <div class="container d-flex flex-column flex-md-row justify-content-around text-light">
         <Link to='/' className="py-2 d-none d-md-inline-block text-light"  id="link1">Home</Link>
         <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
-        <Link to ='/seller/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success"  id="link3">Sign in as Seller</Link>
-        <Link to ='/user/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success"  id="link4">Sign in as User</Link>
-        <Link to="/seller/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary"  id="link5">Register as Seller</Link>
-        <Link to="/user/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary"  id="link6">Register as User</Link>
+        <Link to='/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success">Login</Link>
+        <Link to="/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary" >Register</Link>
       </div>
     </nav>
         )

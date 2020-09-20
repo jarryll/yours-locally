@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 function Inbox ({ match }) {
 
@@ -45,15 +46,20 @@ function Inbox ({ match }) {
                     <td>{item.enquirer_name}</td>
                     <td>{item.email_address}</td>
                     <td>{item.query}</td>
-                    <td><button id={item.id} onClick={(e)=>handleDelete(e)}>Delete</button></td>
+                    <td><button id={item.id} onClick={(e)=>handleDelete(e)} className="btn btn-outline-danger">Delete</button></td>
                 </tr>
         )
     })
 
 if(Cookies.get('random') !== match.params.seller_id){
     return (
-        <div>
-            <h1>You are at the wrong inbox!!!</h1>
+        <div class="d-flex justify-content-center align-items-center" style={{height:'700px'}}>
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+   <h3>You are at the wrong <strong>inbox!</strong> Please close this modal to return to the correct inbox.</h3>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick={()=>window.location=`/inbox/${Cookies.get('random')}`}>
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
         </div>
         )
 }

@@ -117,7 +117,7 @@ function CreateShop({id}){
                 onChange={e => handleImageURLChange(e)}
               />
               Category:
-              <select
+              <select class="form-control"
               onChange={(e)=> handleCategoriesChange(e)}
               >
               <option value="">Please Choose</option>
