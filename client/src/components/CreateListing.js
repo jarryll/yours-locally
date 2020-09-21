@@ -1,41 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function CreateListing({id,categoryId}) {
+function CreateListing({ id, categoryId }) {
 
-     const [listing_name, setListing_name] = useState('');
-     const [listing_details, setListing_details] = useState('');
-     const [image_url, setImage_url] = useState('');
+  const [listing_name, setListing_name] = useState('');
+  const [listing_details, setListing_details] = useState('');
+  const [image_url, setImage_url] = useState('');
 
 
-     const handleClick = async (e) => {
-        e.preventDefault();
-     try{
-        const body = {id, categoryId, listing_name,listing_details,image_url}
-        const response = await fetch("/listings/create", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-          });
-        window.location = `/shop/${id}`
-     } catch (err) {
-        throw new Error ("ERRORRRR")
-     }
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const body = { id, categoryId, listing_name, listing_details, image_url }
+      const response = await fetch("/listings/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      window.location = `/shop/${id}`
+      console.log(response);
+    } catch (err) {
+      throw new Error("ERRORRRR")
     }
+  }
 
 
-    const handleListingNameChange = (e) => {
-        setListing_name(e.target.value)
-        }
-    const handleListingDetailsChange = (e) => {
-        setListing_details(e.target.value)
-        }
-    const handleImageURLChange = (e) => {
-        setImage_url(e.target.value)
-        }
+  const handleListingNameChange = (e) => {
+    setListing_name(e.target.value)
+  }
+  const handleListingDetailsChange = (e) => {
+    setListing_details(e.target.value)
+  }
+  const handleImageURLChange = (e) => {
+    setImage_url(e.target.value)
+  }
 
 
-    return(
-        <div>
+  return (
+    <div>
       <button
         type="button"
         className="btn btn-primary"
@@ -63,7 +64,7 @@ function CreateListing({id,categoryId}) {
             </div>
 
             <div className="modal-body">
-                Listing Details:
+              Listing Details:
               <input
                 type="text"
                 className="form-control"
@@ -77,7 +78,7 @@ function CreateListing({id,categoryId}) {
                 value={listing_details}
                 onChange={e => handleListingDetailsChange(e)}
                 rows='4'
-                >
+              >
 
               </textarea>
               Image:
@@ -92,7 +93,7 @@ function CreateListing({id,categoryId}) {
             <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-dismiss="modal"
                 onClick={e => handleClick(e)}
               >
@@ -110,7 +111,7 @@ function CreateListing({id,categoryId}) {
         </div>
       </div>
     </div>
-        )
+  )
 }
 
 export default CreateListing

@@ -37,20 +37,20 @@ function Home() {
 
     return (
         <div>
-    <h1 class="display-4 font-weight-light text-center mt-4" >Yours Locally.</h1>
-    <p class="lead font-weight-lighter text-center">Hover over the search icon to begin a search</p>
-    <Search
+            <h1 className="display-4 font-weight-light text-center mt-4" >Yours Locally.</h1>
+            <p className="lead font-weight-lighter text-center">Hover over the search icon to begin a search</p>
+            <Search
                 onChangeHandler={onChangeHandler}
                 inputHandler={inputHandler}
                 input={input}
             />
-                <br />
+            <br />
             {loggedIn && !hasSearched ? <SellerShops sellerId={sellerId} /> : null}
-            <br /><div style={{borderBottom: '0.5px solid #CBCBCB'}}></div>
+            <br /><div style={{ borderBottom: '0.5px solid #CBCBCB' }}></div>
             {!hasSearched ? <AllShops /> : null}
             <br /><br />
             {hasSearched ? <Results query={query} /> : null}
-</div>
+        </div>
     )
 }
 export default Home
