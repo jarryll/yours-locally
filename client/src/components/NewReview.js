@@ -18,6 +18,7 @@ function NewReview(props) {
         e.preventDefault();
 
         let { userId, shop } = props;
+        console.log(userId)
         let shopId = shop.id;
         const body = { review, rating, userId, shopId };
 
