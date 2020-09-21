@@ -67,15 +67,12 @@ function Enquiries({ item, id }) {
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target={`#id${id}listing`}
+        data-target={`#id${item.id}listing`}
       >
         Click me to Enquire!
       </button>
 
-      <div
-        className="modal"
-        id={`id${id}listing`}
-      >
+      <div className="modal" id={`id${item.id}listing`}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
