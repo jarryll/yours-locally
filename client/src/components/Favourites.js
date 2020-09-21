@@ -12,12 +12,11 @@ function Favourites () {
         fetchFavourites();
     }, [])
 
-
     const fetchFavourites = async () => {
         if (sellerId !== undefined) {
             const response = await fetch (`/favourites/seller/${sellerId}`)
             const favourites = await response.json();
-            setFavourites(favourites)
+            setFavourites(favourites.rows)
         } else if (userId !== undefined) {
             const response = await fetch (`/favourites/user/${userId}`)
             const favourites = await response.json();
@@ -48,7 +47,6 @@ function Favourites () {
         <div>
             <h1>You are in the favourites page</h1>
             {favouritesList}
-
         </div>
 
 
