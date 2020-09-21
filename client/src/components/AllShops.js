@@ -5,6 +5,7 @@ function AllShops() {
 
     const [allShops, setAllShops] = useState([]);
 
+
     useEffect(() => {
         getAllShops();
     }, [])
@@ -15,6 +16,8 @@ function AllShops() {
         setAllShops(allShops);
     }
 
+
+
     let shops = allShops.map((item, index) => {
         return (
                 <div class="card mb-4 col-3 mr-5 ml-5 d-inline-flex align-items-center" style={{display:'inline-block',maxHeight:'600px'}}>
@@ -22,6 +25,7 @@ function AllShops() {
               <div class="card-body mx-auto text-center">
                 <h5 class="card-title">{item.shop_name}</h5>
                 <p class="card-text"><small class="text-muted">{item.about}</small></p>
+                <p class="card-text">{item.average_rating}</p>
                 <Link to={`/shop/${item.id}`} key={index} className="btn btn-primary ">Visit Me</Link>
               </div>
             </div>

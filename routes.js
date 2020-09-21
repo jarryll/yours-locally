@@ -44,5 +44,4 @@ module.exports = (app, allModels) => {
   app.delete('/favourites/sellerUnfavourite', favouritesControllerCallbacks.deleteSellerFavourites);
   app.delete('/favourites/userUnfavourite', favouritesControllerCallbacks.deleteUserFavourites);
 
-
 };

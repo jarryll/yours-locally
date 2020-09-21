@@ -56,7 +56,7 @@ module.exports = (db) => {
                 console.log("error at shops controller, allShops ===", err.message);
             }
             else {
-                res.send(result.rows);
+                res.send(result);
             }
         })
     }

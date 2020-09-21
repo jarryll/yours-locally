@@ -74,11 +74,14 @@ const getDeleteReview = (id,callback) => {
         })
     }
 
+
+
+
     return {
         getReviews,
         getNewReview,
         getAvgRating,
         getEditReview,
-        getDeleteReview
+        getDeleteReview,
     }
 }

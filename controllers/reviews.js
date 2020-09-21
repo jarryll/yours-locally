@@ -81,6 +81,6 @@ module.exports = (db) => {
         newReview,
         avgRating,
         editReview,
-        deleteReview
+        deleteReview,
     }
 }
