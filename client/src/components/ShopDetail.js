@@ -46,24 +46,13 @@ function ShopDetail({ match }) {
         fetchFavouriteStatus();
     }, []);
 
-    // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
-    if (Cookies.get('random') === shop.seller_id) {
-        isSeller = true;
-    }
 
     useEffect(() => {
         fetchShop();
     }, [hasFavourited]);
 
 
-    // LOGIC TO CHECK SELLER / USER STATUS
-    if (Cookies.get('random') === shop.seller_id) {
-        isSeller = true;
-    }
 
-    if (Cookies.get('random') || Cookies.get('user')) {
-        isLoggedIn = true;
-    }
 
     // HELPER FUNCTIONS
     const fetchShop = async () => {
@@ -150,17 +139,26 @@ function ShopDetail({ match }) {
 
     // }
 
+    // LOGIC TO CHECK SELLER / USER STATUS
+    if (Cookies.get('random') == shop.seller_id) {
+        isSeller = true;
+    }
+
+    if (Cookies.get('random') || Cookies.get('user')) {
+        isLoggedIn = true;
+    }
+
 
     // Function to map results of the fetch request
     const allListings = listings.map((item, index) => {
         return (
-            <div className="card mb-4 col-3 mr-5 ml-5 d-inline-flex align-items-center" style={{ display: 'inline-block', maxHeight: '600px' }} key={index}>
-                <div style={{ height: '400px' }} className="d-flex"><img className="card-img-top" src={item.image_url} alt={item.listing_name} style={{ objectFit: 'fill', margin: 'auto 0', alignSelf: 'center', maxHeight: '300px' }} /></div>
-                <div className="card-body mx-auto text-center">
-                    <h5 className="card-title">{item.listing_name}</h5>
-                    <p className="card-text"><small className="text-muted">{item.listing_details}</small></p>
-                    <p className="card-text"><small className="text-muted">Item(s) Left: {item.quantity}</small></p>
-                    <p className="card-text"><small className="text-muted">${item.price}</small></p>
+            <div class="card mb-4 col-3 mr-5 ml-5 d-inline-flex align-items-center" style={{ display: 'inline-block', maxHeight: '600px' }} key={index}>
+                <div style={{ height: '400px' }} class="d-flex"><img class="card-img-top" src={item.image_url} alt={item.listing_name} style={{ objectFit: 'contain', margin: 'auto 0', alignSelf: 'center', maxHeight: '300px' }} /></div>
+                <div class="card-body mx-auto text-center">
+                    <h5 class="card-title">{item.listing_name}</h5>
+                    <p class="card-text"><small class="text-muted">{item.listing_details}</small></p>
+                    <p class="card-text"><small class="text-muted">Item(s) Left: {item.quantity}</small></p>
+                    <p class="card-text"><small class="text-muted">${item.price}</small></p>
                     <Enquiries item={item} id={match.params.id} />
                     <br />
                     {isSeller ? <EditListing id={match.params.id} item={item} /> : null}
@@ -175,14 +173,14 @@ function ShopDetail({ match }) {
         let date = moment(item.created_at).format('YYYY-MM-DD HH:mm:ss');
 console.log(item)
         return (
-            <div key={index}>
-                <div>{item.username}</div>
-                <div>{item.rating}</div>
-                <div>{item.review}</div>
-                <div>{date}</div>
+            <div class="card mb-3 col-md-auto mr-4" style={{width:'25rem'}} key={index}>
+              <div class="card-body">
+                <h5 class="card-title text-capitalize">{item.review}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">--- {item.username}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{item.rating} <i class="fas fa-star" style={{color:'#D2AD28'}}></i></h6>
+                <h6 class="card-subtitle mb-2 text-muted"> Last edited: {date}</h6>
                 {Cookies.get('user')==item.reviewuserid ? <EditReview item={item} shop={shop}/> : null}
-                <br />
-
+              </div>
             </div>
         )
     })
@@ -194,30 +192,31 @@ console.log(item)
             <div className="d-flex justify-content-center mb-4">
                 {isSeller ? <EditShop shop={shop} /> : null}
             </div>
-            <div style={{ height: '400px' }} className="d-flex"><img className="card-img-top mb-4" src={shop.image_url} alt={shop.shop_name} style={{ objectFit: 'contain' }} /></div>
-            <h3 className="font-weight-normal text-center mt-1 mb-4">What we do</h3>
-            <p className="text-center">{shop.about}</p>
-            <h3 className="font-weight-normal text-center mt-1 mb-4">Our products</h3>
-            <div className="row  d-flex justify-content-center">
+            <div style={{ height: '400px' }} class="d-flex"><img class="card-img-top mb-4" src={shop.image_url} alt={shop.shop_name} style={{ objectFit: 'contain' }} /></div>
+            <h3 class="text-center font-weight-light mt-1">{shop.favourites_count} user(s) liked this shop</h3>
 
-                <h1>{shop.favourites_count} people have liked this shop</h1>
-                {isLoggedIn ? <FavouriteButton sellerId={sellerId} userId={userId} shopId={shop.id} shopDetails={shop} hasFavourited={hasFavourited} setHasFavourited={setHasFavourited} /> : null}
-
+            <div class="d-flex justify-content-center mb-4">    {isLoggedIn ? <FavouriteButton sellerId={sellerId} userId={userId} shopId={shop.id} shopDetails={shop} hasFavourited={hasFavourited} setHasFavourited={setHasFavourited}/> : null} </div>
+            <h3 class="font-weight-normal text-center mt-1 mb-4">What we do</h3>
+            <p class="text-center">{shop.about}</p>
+            <h3 class="font-weight-normal text-center mt-1 mb-4">Our products</h3>
+            <div class="row  d-flex justify-content-center">
                 {allListings}
-
-                <div>
-                    <h5>Reviews</h5>
-                    <br />
-                    {avgRating.round}/5 with {avgRating.count} reviews
-                   <br /><br />
-                    {allReviews}
-                    {!isSeller && isLoggedIn ? <NewReview userId={userId} shop={shop} /> : null}
-                </div>
-
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center" >
                 {isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null}
             </div>
+              <div>
+                    <h3 className="font-weight-lighter text-center mt-1 mb-4">What others are saying</h3>
+                    <h5 className="font-weight-normal text-center mt-1 mb-4"> {avgRating.count} Review(s)</h5>
+                    <h5 className="font-weight-normal text-center mt-1 mb-4">{avgRating.round} <i class="fas fa-star" style={{color:'#D2AD28'}}></i></h5>
+                    <div style={{width:'1500px',margin:'0 auto'}} >
+                    <div class=" mb-4 mr-5 ml-5 row d-flex justify-content-center align-items-center">{allReviews}
+
+
+                    </div>
+                    </div>
+                    <div className="d-flex justify-content-center mb-5">{!isSeller && isLoggedIn ? <NewReview userId={userId} shop={shop} /> : null}</div>
+                </div>
 
         </div>
     )

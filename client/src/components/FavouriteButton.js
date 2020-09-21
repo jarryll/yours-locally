@@ -104,9 +104,7 @@ function FavouriteButton(props) {
 
     return (
         <div>
-
-            { hasFavourited ? <button value={shopId} onClick={(e) => handleClick(e)}>Unsayang this shop</button> : <button value={shopId} onClick={(e) => handleClick(e)} >Sayang this shop!</button>}
-
+             { hasFavourited ? <button className="btn btn-danger" value={shopId} onClick={(e)=>handleClick(e)}>Unsayang this shop</button> : <button className="btn btn-success" value={shopId} onClick={(e)=>handleClick(e)} >Sayang this shop!</button> }
         </div>
 
     )

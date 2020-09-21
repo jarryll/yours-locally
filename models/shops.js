@@ -38,9 +38,7 @@ module.exports = (dbPoolInstance) => {
     }
 
     let getAllShops = (callback) => {
-
-        let query = `SELECT shops.shop_name, shops.image_url, shops.about, round(avg(reviews.rating),1) AS average_rating from shops inner join reviews on reviews.shop_id = shops.id GROUP BY shops.shop_name, shops.image_url, shops.about;`
-
+        let query = `SELECT shops.id, shops.shop_name, shops.image_url, shops.about, round(avg(reviews.rating),1) AS average_rating from shops inner join reviews on reviews.shop_id = shops.id GROUP BY shops.id, shops.shop_name, shops.image_url, shops.about;`;
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
                 console.log("error at shops model, getAllShops ---", err.message);

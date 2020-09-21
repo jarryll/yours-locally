@@ -28,13 +28,13 @@ function Results(props) {
     })
     return (
         <div>
-            <h3 class="font-weight-light text-center mt-4">You searched for: {props.query}</h3> <br />
-            <div class="row  d-flex justify-content-center">
-                {listings}
-            </div>
-            <div class="text-center">
-                <button class="btn btn-warning" onClick={() => window.location = '/'}>Back to shops</button>
-            </div>
+        <h3 class ="font-weight-light text-center mt-4">You searched for: {props.query}</h3> <br/>
+        <div class="row  d-flex justify-content-center">
+            {listings}
+        </div>
+        <div class="text-center">
+            <button class="btn btn-warning mb-5" onClick={()=>window.location='/'}>Back to shops</button>
+        </div>
         </div>
     )
 }
