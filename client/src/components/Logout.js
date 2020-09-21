@@ -15,8 +15,8 @@ function Logout(props) {
     window.location ='/';
    }
 
-    return (
-      <button onClick={(e) => handleClick(e)}>Log Out</button>
+    return(
+            <button type="button" className="btn btn-outline-warning" onClick={(e) => handleClick(e)}>Log Out</button>
         )
 }
 

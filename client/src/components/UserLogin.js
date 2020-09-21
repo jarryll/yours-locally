@@ -39,15 +39,35 @@ const UserLogin = () => {
 
 
     return (
-     <form onSubmit={(e) => handleClick(e)} >
-        <h3> User Login Page </h3>
-         <label htmlFor="username">Username</label>
-         <input type="text" required id="username" value={username} onChange={(e) => handleUsernameChange(e)}/>
-         <label htmlFor="password">Password</label>
-         <input type="password" required id="password" value={password} onChange={(e) => handlePasswordChange(e)}/>
-        <input type="submit" /> <br/> <br/>
-        <h3 style={{color:'red'}}>{errorMessage}</h3>
-     </form>
+                <div class="col-md-6 login-form-1">
+                    <h3>Login as User</h3>
+                    <form onSubmit={(e) => handleClick(e)}>
+                        <div class="form-group">
+                            <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Your Username *"
+                            value={username}
+                            required
+                            onChange={(e) => handleUsernameChange(e)}
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Your Password *"
+                            value={password}
+                            required
+                            onChange={(e) => handlePasswordChange(e)}
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <h5 style={{color:'red'}}>{errorMessage}</h5>
+                    </form>
+                </div>
     )
 
 }

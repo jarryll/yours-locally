@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Logout from './Logout';
+import  '../App.css';
 
 function Nav({match}) {
 
@@ -14,65 +15,32 @@ useEffect(() => {
 
 let userId = Cookies.get('user');
 let sellerId = Cookies.get('random');
-console.log(match)
-    if(loggedIn){
+
+if(loggedIn) {
         return (
-        <nav>
-            <ul className="nav-links">
-                <h3>Logo goes here</h3>
-                <Link to = '/'>
-                    <li>Home</li>
-                </Link>
-                <Link to ='/shopByCategory'>
-                    <li>Shop by category</li>
-                </Link>
-                <Link to ='/favourites'>
-                    <li>Your favourites</li>
-                </Link>
-
-                {sellerId ? <Link to ={`/inbox/${sellerId}`}>
-                                    <li>Inbox</li>
-                                </Link> : null}
-
-                        <li><Logout /></li>
-
-
-            </ul>
-        </nav>
+              <nav className="site-header sticky-top py-1 bg-dark">
+                <div className="container d-flex flex-column flex-md-row justify-content-between text-light">
+                  <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
+                  <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+                  {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
+                  <Link to ='/favourites' className="py-2 d-none d-md-inline-block text-light">Your favourites</Link>
+                  <Logout />
+                </div>
+              </nav>
     )
-    } else if(!loggedIn){
+
+} else if (!loggedIn) {
         return (
-            <nav>
-                <ul className="nav-links">
-                    <h3>Logo goes here</h3>
-                    <Link to = '/'>
-                        <li>Home</li>
-                    </Link>
-
-                    <Link to ='/shopByCategory'>
-                        <li>Shop by category</li>
-                    </Link>
-
-                    <Link to ='/seller/login'>
-                        <li>Sign in as Seller</li>
-                    </Link>
-
-                    <Link to ='/user/login'>
-                        <li>Sign in as User</li>
-                    </Link>
-
-                    <Link to="/seller/register">
-                        <li>Register as Seller</li>
-                    </Link>
-
-                    <Link to="/user/register">
-                        <li>Register as User</li>
-                    </Link>
-                </ul>
+            <nav className="site-header sticky-top py-1 bg-dark">
+              <div className="container d-flex flex-column flex-md-row justify-content-around text-light">
+                <Link to='/' className="py-2 d-none d-md-inline-block text-light"  id="link1">Home</Link>
+                <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+                <Link to='/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success">Login</Link>
+                <Link to="/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary" >Register</Link>
+              </div>
             </nav>
         )
     }
-
 }
 
 export default Nav

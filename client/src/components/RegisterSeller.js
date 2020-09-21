@@ -14,7 +14,7 @@ function RegisterSeller() {
             body: JSON.stringify(body)
           });
         console.log(response)
-        window.location = '/seller/login'
+        window.location = '/login'
      } catch (err) {
         throw new Error ("ERRORRRR")
      }
@@ -26,15 +26,38 @@ function RegisterSeller() {
         setPassword(e.target.value)
     }
     return (
-     <form onSubmit={(e) => handleClick(e)} >
-     <h3> Seller Registration Page </h3>
-         <label htmlFor="username">Username</label>
-         <input type="text" required minLength='4'maxLength="12" id="username" onChange={(e) => handleUsernameChange(e)}/>
-         <label htmlFor="password">Password</label>
-         <input type="password" required minLength='4'maxLength="12" id="password" onChange={(e) =>  handlePasswordChange(e)}/>
-         <br/> <h5>Please Enter Desired Username and Password. Between 4-12 characters for both fields </h5><br/>
-        <input type="submit" />
-     </form>
+                     <div class="col-md-6 login-form-1">
+                    <h3>Register as Seller</h3>
+                    <form onSubmit={(e) => handleClick(e)}>
+                        <div class="form-group">
+                            <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Your Username *"
+                            value={username}
+                            required
+                            minLength='4'
+                            maxLength="12"
+                            onChange={(e) => handleUsernameChange(e)}
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Your Password *"
+                            value={password}
+                            required
+                            minLength='4'
+                            maxLength="12"
+                            onChange={(e) => handlePasswordChange(e)}
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Register" />
+                        </div>
+                    </form>
+                </div>
     )
 }
 export default RegisterSeller

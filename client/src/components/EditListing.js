@@ -35,7 +35,7 @@ const setFunction = () => {
         <div>
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-warning"
         data-toggle="modal"
         data-target={`#id${item.id}edit`}
         onClick={() => setFunction()}
