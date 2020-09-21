@@ -46,24 +46,13 @@ function ShopDetail({ match }) {
         fetchFavouriteStatus();
     }, []);
 
-    // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
-    if (Cookies.get('random') === shop.seller_id) {
-        isSeller = true;
-    }
 
     useEffect(() => {
         fetchShop();
     }, [hasFavourited]);
 
 
-    // LOGIC TO CHECK SELLER / USER STATUS
-    if (Cookies.get('random') === shop.seller_id) {
-        isSeller = true;
-    }
 
-    if (Cookies.get('random') || Cookies.get('user')) {
-        isLoggedIn = true;
-    }
 
     // HELPER FUNCTIONS
     const fetchShop = async () => {
@@ -149,6 +138,15 @@ function ShopDetail({ match }) {
     //     }
 
     // }
+
+    // LOGIC TO CHECK SELLER / USER STATUS
+    if (Cookies.get('random') == shop.seller_id) {
+        isSeller = true;
+    }
+
+    if (Cookies.get('random') || Cookies.get('user')) {
+        isLoggedIn = true;
+    }
 
 
     // Function to map results of the fetch request
