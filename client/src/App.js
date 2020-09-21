@@ -1,5 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+//CSS
 import './App.css';
+
+//Components
 import Nav from './components/Nav';
 import ShopByCategory from './components/ShopByCategory';
 import Home from './components/Home';
@@ -8,8 +13,7 @@ import ShopDetail from './components/ShopDetail';
 import Inbox from './components/Inbox';
 import Login from './components/Login';
 import Register from './components/Register';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import Favourites from './components/Favourites';
 
 function App() {
   return (
@@ -24,6 +28,7 @@ function App() {
           <Route path="/shop/:id" component={ShopDetail}/>
           <Route path="/inbox/:seller_id" component={Inbox} />
           <Route path='/logout' component={Logout} />
+          <Route path='/favourites' component={Favourites} />
         </Switch>
      </div>
     </Router>

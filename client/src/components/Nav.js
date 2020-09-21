@@ -13,33 +13,34 @@ useEffect(() => {
     } else setLoggedIn(false)
 }, []);
 
+let userId = Cookies.get('user');
 let sellerId = Cookies.get('random');
-console.log(match)
-    if(loggedIn){
-        return (
-<nav class="site-header sticky-top py-1 bg-dark">
-  <div class="container d-flex flex-column flex-md-row justify-content-between text-light">
-    <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
-    <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
-    {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
-    <Logout />
 
-  </div>
-</nav>
-    )
-    } else if(!loggedIn){
+if(loggedIn) {
         return (
-    <nav class="site-header sticky-top py-1 bg-dark">
-      <div class="container d-flex flex-column flex-md-row justify-content-around text-light">
-        <Link to='/' className="py-2 d-none d-md-inline-block text-light"  id="link1">Home</Link>
-        <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
-        <Link to='/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success">Login</Link>
-        <Link to="/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary" >Register</Link>
-      </div>
-    </nav>
+              <nav className="site-header sticky-top py-1 bg-dark">
+                <div className="container d-flex flex-column flex-md-row justify-content-between text-light">
+                  <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
+                  <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+                  {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
+                  <Link to ='/favourites' className="py-2 d-none d-md-inline-block text-light">Your favourites</Link>
+                  <Logout />
+                </div>
+              </nav>
+    )
+
+} else if (!loggedIn) {
+        return (
+            <nav className="site-header sticky-top py-1 bg-dark">
+              <div className="container d-flex flex-column flex-md-row justify-content-around text-light">
+                <Link to='/' className="py-2 d-none d-md-inline-block text-light"  id="link1">Home</Link>
+                <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
+                <Link to='/login' className="py-2 d-none d-md-inline-block text-light btn btn-outline-success">Login</Link>
+                <Link to="/register" className="py-2 d-none d-md-inline-block text-light btn btn-outline-primary" >Register</Link>
+              </div>
+            </nav>
         )
     }
-
 }
 
 export default Nav
