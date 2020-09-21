@@ -47,13 +47,15 @@ module.exports = (db) => {
             if (err) {
                 console.log(err)
                 response.send(err)
+
             } else {
-                if (result === "username and password is incorrect, please verify and re-enter") {
-                    response.send({ result })
-                } else {
-                    response.cookie('logIn', sha256(`${SALT}true`))
-                    response.cookie('user_id', result.id)
-                    response.send({})
+              if (result === "username and password is incorrect, please verify and re-enter"){
+                response.send({result})
+              } else {
+                      const idConfig = result.id;
+                      response.cookie('logIn', sha256(`${SALT}true`));
+                      response.cookie('user', idConfig);
+                      response.send({})
                 }
             }
         })

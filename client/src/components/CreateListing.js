@@ -38,7 +38,7 @@ function CreateListing({id,categoryId}) {
         <div>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-toggle="modal"
         data-target={`#id${id}listing`}
       >
@@ -46,23 +46,23 @@ function CreateListing({id,categoryId}) {
       </button>
 
       <div
-        class="modal"
+        className="modal"
         id={`id${id}listing`}
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Add New Listing</h4>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Add New Listing</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
                 Listing Details:
               <input
                 type="text"
@@ -89,7 +89,7 @@ function CreateListing({id,categoryId}) {
               />
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
                 class="btn btn-primary"
@@ -100,7 +100,7 @@ function CreateListing({id,categoryId}) {
               </button>
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
               >
                 Close

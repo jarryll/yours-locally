@@ -6,6 +6,7 @@ module.exports = (app, allModels) => {
   const categoriesControllerCallbacks = require('./controllers/categories')(allModels);
   const listingsControllerCallbacks = require('./controllers/listings')(allModels);
   const enquiriesControllerCallbacks = require('./controllers/enquiries')(allModels);
+  const favouritesControllerCallbacks = require('./controllers/favourites')(allModels);
   const reviewsControllerCallbacks = require('./controllers/reviews')(allModels);
 
   //Routes
@@ -32,5 +33,14 @@ module.exports = (app, allModels) => {
   app.get('/shops/:id/reviews', reviewsControllerCallbacks.reviews);
   app.post('/review/new', reviewsControllerCallbacks.newReview);
   app.get('/shop/:id/average_rating', reviewsControllerCallbacks.avgRating);
+  app.get('/favourites/seller/', favouritesControllerCallbacks.fetchSellerFavouritesStatus);
+  app.get('/favourites/user/', favouritesControllerCallbacks.fetchUserFavouritesStatus);
+  app.get('/favourites/seller/:id', favouritesControllerCallbacks.sellerFavourites);
+  app.get('/favourites/user/:id', favouritesControllerCallbacks.userFavourites);
+  app.post('/favourites/addSellerFavourites', favouritesControllerCallbacks.addSellerFavourites);
+  app.post('/favourites/addUserFavourites', favouritesControllerCallbacks.addUserFavourites);
+  app.delete('/favourites/sellerUnfavourite', favouritesControllerCallbacks.deleteSellerFavourites);
+  app.delete('/favourites/userUnfavourite', favouritesControllerCallbacks.deleteUserFavourites);
+
 
 };

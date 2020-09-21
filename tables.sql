@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS favourites (
+    id SERIAL PRIMARY KEY,
+    shop_id INTEGER,
+    user_id INTEGER,
+    seller_id INTEGER
+);
 CREATE TABLE IF NOT EXISTS sellers (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
@@ -10,18 +16,14 @@ CREATE TABLE IF NOT EXISTS users (
     hashed_password TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS favourites (
-    id SERIAL PRIMARY KEY,
-    shop_id INTEGER
-);
-
 CREATE TABLE IF NOT EXISTS shops (
     id SERIAL PRIMARY KEY,
     shop_name TEXT NOT NUll,
     image_url TEXT,
     about TEXT,
     category_id INTEGER,
-    seller_id INTEGER REFERENCES sellers(id)
+    seller_id INTEGER REFERENCES sellers(id),
+    favourites_count INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS categories (
@@ -34,6 +36,8 @@ CREATE TABLE IF NOT EXISTS listings (
     listing_name TEXT,
     listing_details TEXT,
     image_url TEXT,
+    quantity INTEGER,
+    price NUMERIC (6,2),
     shop_id INTEGER,
     category_id INTEGER,
     created_at TIMESTAMP DEFAULT now()
