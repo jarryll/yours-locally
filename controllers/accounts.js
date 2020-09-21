@@ -22,9 +22,11 @@ module.exports = (db) => {
                 if (result === "username and password is incorrect, please verify and re-enter") {
                     response.send({ result })
                 } else {
+                    const username = result.username
                     const idConfig = result.id;
                     response.cookie('id', sha256(`${SALT}${result.id}`))
                     response.cookie('random', idConfig)
+                    response.cookie('username', username)
                     response.cookie('logIn', sha256(`${SALT}true`))
                     response.send({ id: idConfig })
                 }
@@ -47,13 +49,14 @@ module.exports = (db) => {
             if (err) {
                 console.log(err)
                 response.send(err)
-
             } else {
               if (result === "username and password is incorrect, please verify and re-enter"){
                 response.send({result})
               } else {
+                      const username = result.username
                       const idConfig = result.id;
                       response.cookie('logIn', sha256(`${SALT}true`));
+                      response.cookie('username', username)
                       response.cookie('user', idConfig);
                       response.send({})
                 }
