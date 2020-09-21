@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DeleteShop from './DeleteShop'
 
-const EditShop =  ({ shop }) => {
-  const [shopName, setShopName] =  useState(shop.shop_name);
-  const [about, setAbout] =  useState(shop.about);
-  const [imageUrl, setimageUrl] =  useState(shop.image_url);
-  //edit description function
-
-
+const EditShop = ({ shop }) => {
+  const [shopName, setShopName] = useState(shop.shop_name);
+  const [about, setAbout] = useState(shop.about);
+  const [imageUrl, setimageUrl] = useState(shop.image_url);
 
   const setFunction = () => {
-        setShopName(shop.shop_name)
-        setAbout(shop.about)
-        setimageUrl(shop.image_url)
+    setShopName(shop.shop_name)
+    setAbout(shop.about)
+    setimageUrl(shop.image_url)
   }
 
-
-
-console.log(shopName,about)
+  console.log(shopName, about)
 
   const updateShop = async e => {
     e.preventDefault();
     try {
-      const body = { shopName,about,imageUrl };
+      const body = { shopName, about, imageUrl };
       const response = await fetch(
         `/shops/${shop.id}`,
         {
@@ -33,17 +28,17 @@ console.log(shopName,about)
       );
 
       window.location = `/shop/${shop.id}`;
+      console.log(response);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-
   return (
     <div>
       <button
         type="button"
-        class="btn btn-warning"
+        className="btn btn-warning"
         data-toggle="modal"
         data-target={`#id${shop.id}`}
         onClick={() => setFunction()}
@@ -55,17 +50,17 @@ console.log(shopName,about)
         id = id10
       */}
       <div
-        class="modal"
+        className="modal"
         id={`id${shop.id}`}
         onClick={() => setFunction()}
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Shop</h4>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Edit Shop</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 onClick={() => setFunction()}
               >
@@ -73,8 +68,8 @@ console.log(shopName,about)
               </button>
             </div>
 
-            <div class="modal-body">
-                Shop Name:
+            <div className="modal-body">
+              Shop Name:
               <input
                 type="text"
                 className="form-control"
@@ -88,7 +83,7 @@ console.log(shopName,about)
                 value={about}
                 onChange={e => setAbout(e.target.value)}
                 rows='6'
-                >
+              >
 
               </textarea>
               Image:
@@ -100,11 +95,11 @@ console.log(shopName,about)
               />
             </div>
 
-            <div class="modal-footer">
-                <DeleteShop id={shop.id}/>
+            <div className="modal-footer">
+              <DeleteShop id={shop.id} />
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-dismiss="modal"
                 onClick={e => updateShop(e)}
               >
@@ -112,7 +107,7 @@ console.log(shopName,about)
               </button>
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
                 onClick={() => setFunction()}
               >

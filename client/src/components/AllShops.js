@@ -35,10 +35,10 @@ function AllShops() {
     return (
 
         <div>
-            <h3 class ="font-weight-light text-center mt-4">All shops</h3>
+            <h3 className="font-weight-light text-center mt-4">All shops</h3>
             <br />
-            <div class="row  d-flex justify-content-center">
-            {shops}
+            <div className="row  d-flex justify-content-center">
+                {shops}
             </div>
         </div>
 

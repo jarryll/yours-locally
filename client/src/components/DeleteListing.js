@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const DeleteListing =  ({ listingId,id }) => {
+const DeleteListing = ({ listingId, id }) => {
 
 
-const handleClick = async listingId => {
+  const handleClick = async listingId => {
     try {
-        console.log(listingId)
+      console.log(listingId)
       const deletedListing = await fetch(`/listings/delete/${listingId}`, {
         method: "DELETE"
       });
       window.location = `/shop/${id}`;
+      console.log(deletedListing);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-    return(
+  return (
     <div>
       <button
         type="button"
-        class="btn btn-danger"
+        className="btn btn-danger"
         data-toggle="modal"
         data-target={`#id${listingId}deletelisting`}
       >
@@ -27,30 +28,30 @@ const handleClick = async listingId => {
       </button>
 
       <div
-        class="modal"
+        className="modal"
         id={`id${listingId}deletelisting`}
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete Listing</h4>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Delete Listing</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
 
-            <div class="modal-body">
-               <h3>Are you sure you want to delete your listing?</h3>
+            <div className="modal-body">
+              <h3>Are you sure you want to delete your listing?</h3>
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 data-dismiss="modal"
                 onClick={() => handleClick(listingId)}
               >
@@ -58,7 +59,7 @@ const handleClick = async listingId => {
               </button>
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
               >
                 Close
@@ -68,7 +69,7 @@ const handleClick = async listingId => {
         </div>
       </div>
     </div>
-        )
+  )
 
 
 }

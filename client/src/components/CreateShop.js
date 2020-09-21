@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 
 function CreateShop({ id }) {
 
@@ -62,7 +61,7 @@ function CreateShop({ id }) {
       <div>
         <button
           type="button"
-          class="btn btn-warning"
+          className="btn btn-warning"
           data-toggle="modal"
           data-target={`#id${id}`}
           onClick={() => {
@@ -119,12 +118,12 @@ function CreateShop({ id }) {
               Category:
 
               <select className="form-control"
-              onChange={(e)=> handleCategoriesChange(e)}
-              >
-              <option value="">Please Choose</option>
-              {categoriesOpts}
-              </select>
-            </div>
+                  onChange={(e) => handleCategoriesChange(e)}
+                >
+                  <option value="">Please Choose</option>
+                  {categoriesOpts}
+                </select>
+              </div>
 
               <div className="modal-footer">
                 <button

@@ -19,19 +19,19 @@ function ShopDetail({ match }) {
     //STATES
     const [shop, setShop] = useState({});
     const [listings, setListings] = useState([]);
-
-    const [showEnquiries, setShowEnquiries] = useState(false);
-    const [selectedItem, setSelectedItem] = useState("");
-    const [enquiry, setEnquiry] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [enquirer, setEnquirer] = useState("");
     const [reviews, setReviews] = useState([]);
     const [avgRating, setAvgRating] = useState([]);
-    const [loggedIn, setLoggedIn] = useState(false);
     const [userId, setUserId] = useState(Cookies.get('user'));
-    const [userReview, setUserReview] = useState(false);
     const [sellerId, setSellerId] = useState(Cookies.get('random'));
     const [hasFavourited, setHasFavourited] = useState(false);
+
+    // const [showEnquiries, setShowEnquiries] = useState(false);
+    // const [selectedItem, setSelectedItem] = useState("");
+    // const [enquiry, setEnquiry] = useState("");
+    // const [userEmail, setUserEmail] = useState("");
+    // const [enquirer, setEnquirer] = useState("");
+    // const [loggedIn, setLoggedIn] = useState(false);
+    // const [userReview, setUserReview] = useState(false);
 
     // FOR COOKIES
     let isSeller = false;
@@ -47,7 +47,7 @@ function ShopDetail({ match }) {
     }, []);
 
     // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
-    if (Cookies.get('random') == shop.seller_id) {
+    if (Cookies.get('random') === shop.seller_id) {
         isSeller = true;
     }
 
@@ -57,7 +57,7 @@ function ShopDetail({ match }) {
 
 
     // LOGIC TO CHECK SELLER / USER STATUS
-    if (Cookies.get('random') == shop.seller_id) {
+    if (Cookies.get('random') === shop.seller_id) {
         isSeller = true;
     }
 
@@ -109,46 +109,46 @@ function ShopDetail({ match }) {
         }
     }
 
-    const handleClickEnquire = (e) => {
-        setShowEnquiries(true)
-        setSelectedItem(e.target.id)
-    }
+    // const handleClickEnquire = (e) => {
+    //     setShowEnquiries(true)
+    //     setSelectedItem(e.target.id)
+    // }
 
-    const handleClose = () => {
-        setShowEnquiries(false)
-    }
+    // const handleClose = () => {
+    //     setShowEnquiries(false)
+    // }
 
-    const handleChange = (e) => {
-        switch (e.target.id) {
-            case "email":
-                setUserEmail(e.target.value);
-                break;
-            case "name":
-                setEnquirer(e.target.value);
-                break;
-            default:
-                setEnquiry(e.target.value)
-        }
-    }
+    // const handleChange = (e) => {
+    //     switch (e.target.id) {
+    //         case "email":
+    //             setUserEmail(e.target.value);
+    //             break;
+    //         case "name":
+    //             setEnquirer(e.target.value);
+    //             break;
+    //         default:
+    //             setEnquiry(e.target.value)
+    //     }
+    // }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const shopId = match.params.id;
-        const body = { selectedItem, enquirer, userEmail, enquiry, shopId }
-        try {
-            const response = await fetch('/enquire', {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-        } catch (err) {
-            throw new Error("failed to submit query")
-        }
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const shopId = match.params.id;
+    //     const body = { selectedItem, enquirer, userEmail, enquiry, shopId }
+    //     try {
+    //         const response = await fetch('/enquire', {
+    //             method: "POST",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify(body)
+    //         })
+    //     } catch (err) {
+    //         throw new Error("failed to submit query")
+    //     }
 
-    }
+    // }
 
 
     // Function to map results of the fetch request
@@ -189,9 +189,9 @@ console.log(item)
 
     return (
         <div>
-            <h4 class="font-weight-lighter text-center mt-4">Welcome to </h4>
-            <h3 class="font-weight-normal text-center mt-1 mb-4">{shop.shop_name}</h3>
-            <div class="d-flex justify-content-center mb-4">
+            <h4 className="font-weight-lighter text-center mt-4">Welcome to </h4>
+            <h3 className="font-weight-normal text-center mt-1 mb-4">{shop.shop_name}</h3>
+            <div className="d-flex justify-content-center mb-4">
                 {isSeller ? <EditShop shop={shop} /> : null}
             </div>
             <div style={{ height: '400px' }} class="d-flex"><img class="card-img-top mb-4" src={shop.image_url} alt={shop.shop_name} style={{ objectFit: 'contain' }} /></div>
@@ -203,8 +203,6 @@ console.log(item)
             <h3 class="font-weight-normal text-center mt-1 mb-4">Our products</h3>
             <div class="row  d-flex justify-content-center">
                 {allListings}
-
-
             </div>
             <div className="d-flex justify-content-center" >
                 {isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null}
