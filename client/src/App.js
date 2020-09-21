@@ -10,6 +10,7 @@ import UserLogin from './components/UserLogin';
 import Logout from './components/Logout';
 import ShopDetail from './components/ShopDetail';
 import Inbox from './components/Inbox';
+import Favourites from './components/Favourites';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/shop/:id" component={ShopDetail}/>
           <Route path="/inbox/:seller_id" component={Inbox} />
           <Route path='/logout' component={Logout} />
+          <Route path='/favourites' component={Favourites} />
         </Switch>
      </div>
     </Router>

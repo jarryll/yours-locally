@@ -11,6 +11,7 @@ function Logout(props) {
     Cookies.remove('random');
     Cookies.remove('type');
     Cookies.remove('id');
+    Cookies.remove('user');
     window.location ='/';
    }
 

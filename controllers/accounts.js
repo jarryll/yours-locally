@@ -51,7 +51,9 @@ const loginSeller = (request,response) => {
               if (result === "username and password is incorrect, please verify and re-enter"){
                 response.send({result})
               } else {
-                      response.cookie('logIn', sha256(`${SALT}true`))
+                      const idConfig = result.id;
+                      response.cookie('logIn', sha256(`${SALT}true`));
+                      response.cookie('user', idConfig);
                       response.send({})
                 }
         }

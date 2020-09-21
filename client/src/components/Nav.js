@@ -12,6 +12,7 @@ useEffect(() => {
     } else setLoggedIn(false)
 }, []);
 
+let userId = Cookies.get('user');
 let sellerId = Cookies.get('random');
 console.log(match)
     if(loggedIn){
@@ -24,6 +25,9 @@ console.log(match)
                 </Link>
                 <Link to ='/shopByCategory'>
                     <li>Shop by category</li>
+                </Link>
+                <Link to ='/favourites'>
+                    <li>Your favourites</li>
                 </Link>
 
                 {sellerId ? <Link to ={`/inbox/${sellerId}`}>

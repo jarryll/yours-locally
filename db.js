@@ -21,9 +21,9 @@ if( process.env.DATABASE_URL ){
 
 }else{
   configs = {
-    user: 'alvischew',
+    user: 'jarryl',
     host: '127.0.0.1',
-    database: 'seiproj3test',
+    database: 'hbb',
     port: 5432
   };
 }
@@ -41,14 +41,14 @@ const allShopsModelsFunction = require('./models/shops');
 const allCategoriesModelsFunction = require('./models/categories');
 const allListingsModelsFunction = require('./models/listings');
 const allEnquiriesModelsFunction = require('./models/enquiries');
+const allFavouritesModelsFunction = require('./models/favourites');
 
 const accountsModelsObject = allAccountsModelsFunction(pool);
 const shopsModelsObjects = allShopsModelsFunction(pool);
 const categoriesModelsObject = allCategoriesModelsFunction(pool);
 const listingsModelsObject = allListingsModelsFunction(pool);
 const enquiriesModelsObject = allEnquiriesModelsFunction(pool);
-
-
+const favouritesModelsObject = allFavouritesModelsFunction(pool);
 
 
 module.exports = {
@@ -65,7 +65,8 @@ module.exports = {
  shops: shopsModelsObjects,
  categories: categoriesModelsObject,
  listings: listingsModelsObject,
- enquiries: enquiriesModelsObject
+ enquiries: enquiriesModelsObject,
+ favourites: favouritesModelsObject
 };
 
 
