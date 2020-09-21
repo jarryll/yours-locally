@@ -35,6 +35,8 @@ function Home() {
         setInput("");
     }
 
+
+
     return (
         <div>
     <h1 class="display-4 font-weight-light text-center mt-4" >Yours Locally.</h1>

@@ -32,6 +32,8 @@ module.exports = (app, allModels) => {
   app.delete('/deleteEnquiry/:id', enquiriesControllerCallbacks.deleteEnquiry);
   app.get('/shops/:id/reviews', reviewsControllerCallbacks.reviews);
   app.post('/review/new', reviewsControllerCallbacks.newReview);
+  app.put('/review/edit', reviewsControllerCallbacks.editReview);
+  app.delete('/review/delete/:id', reviewsControllerCallbacks.deleteReview);
   app.get('/shop/:id/average_rating', reviewsControllerCallbacks.avgRating);
   app.get('/favourites/seller/', favouritesControllerCallbacks.fetchSellerFavouritesStatus);
   app.get('/favourites/user/', favouritesControllerCallbacks.fetchUserFavouritesStatus);
@@ -41,6 +43,5 @@ module.exports = (app, allModels) => {
   app.post('/favourites/addUserFavourites', favouritesControllerCallbacks.addUserFavourites);
   app.delete('/favourites/sellerUnfavourite', favouritesControllerCallbacks.deleteSellerFavourites);
   app.delete('/favourites/userUnfavourite', favouritesControllerCallbacks.deleteUserFavourites);
-
 
 };

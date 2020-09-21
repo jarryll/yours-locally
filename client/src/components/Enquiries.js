@@ -65,14 +65,14 @@ if(successEnquiry){
         type="button"
         class="btn btn-primary"
         data-toggle="modal"
-        data-target={`#id${id}listing`}
+        data-target={`#id${item.id}listing`}
       >
         Click me to Enquire!
       </button>
 
       <div
         class="modal"
-        id={`id${id}listing`}
+        id={`id${item.id}listing`}
       >
         <div class="modal-dialog">
           <div class="modal-content">
