@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const DeleteShop =  ({ id }) => {
-const deleteShop = async id => {
+const DeleteShop = ({ id }) => {
+  const deleteShop = async id => {
     try {
       const deletedShop = await fetch(`/shops/${id}`, {
         method: "DELETE"
       });
       window.location = '/';
+      console.log(deletedShop);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-    return(
+  return (
     <div>
       <button
         type="button"
-        class="btn btn-danger"
+        className="btn btn-danger"
         data-toggle="modal"
         data-target={`#id${id}2`}
       >
@@ -24,30 +25,30 @@ const deleteShop = async id => {
       </button>
 
       <div
-        class="modal"
+        className="modal"
         id={`id${id}2`}
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete Shop</h4>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Delete Shop</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
 
-            <div class="modal-body">
-               <h3>Are you sure you want to delete your shop?</h3>
+            <div className="modal-body">
+              <h3>Are you sure you want to delete your shop?</h3>
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 data-dismiss="modal"
                 onClick={() => deleteShop(id)}
               >
@@ -55,7 +56,7 @@ const deleteShop = async id => {
               </button>
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
               >
                 Close
@@ -65,7 +66,7 @@ const deleteShop = async id => {
         </div>
       </div>
     </div>
-        )
+  )
 
 
 }
