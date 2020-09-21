@@ -19,7 +19,7 @@ module.exports = (db) => {
         console.log("newReview controller triggered")
 
         const { review, rating, userId, shopId } = req.body;
-
+        console.log(req.body)
         db.reviews.getNewReview(review, rating, userId, shopId, (err, result) => {
             if (err) {
                 console.log("error at reviews controller, newReview ---", err.message);
