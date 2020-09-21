@@ -11,6 +11,7 @@ import CreateListing from './CreateListing';
 import EditListing from './EditListing';
 import NewReview from './NewReview';
 import FavouriteButton from './FavouriteButton';
+import EditReview from './EditReview';
 
 
 function ShopDetail({ match }) {
@@ -54,6 +55,7 @@ function ShopDetail({ match }) {
         fetchShop();
     }, [hasFavourited]);
 
+
     // LOGIC TO CHECK SELLER / USER STATUS
     if (Cookies.get('random') == shop.seller_id) {
         isSeller = true;
@@ -81,6 +83,7 @@ function ShopDetail({ match }) {
     const fetchShopReviews = async () => {
         const results = await fetch(`/shops/${match.params.id}/reviews`);
         const reviews = await results.json();
+        console.log("-----",reviews)
         setReviews(reviews);
     }
 
@@ -166,17 +169,18 @@ function ShopDetail({ match }) {
         )
     })
 
-    // map results of all reviews for this shop 
+    // map results of all reviews for this shop
     const allReviews = reviews.map((item, index) => {
 
         let date = moment(item.created_at).format('YYYY-MM-DD HH:mm:ss');
-
+console.log(item)
         return (
             <div key={index}>
                 <div>{item.username}</div>
                 <div>{item.rating}</div>
                 <div>{item.review}</div>
                 <div>{date}</div>
+                {Cookies.get('user')==item.reviewuserid ? <EditReview item={item} shop={shop}/> : null}
                 <br />
 
             </div>

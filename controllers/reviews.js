@@ -31,6 +31,32 @@ module.exports = (db) => {
 
     }
 
+    let editReview = (req,res) => {
+        const {review,rating, itemId} = req.body;
+        let values = [review,rating,itemId]
+        console.log(values)
+        db.reviews.getEditReview(values,(err, result) => {
+            if (err) {
+                console.log("error at reviews controller, newReview ---", err.message);
+            }
+            else {
+                res.send(result.rows)
+            }
+        })
+    }
+
+    let deleteReview = (req,res) => {
+        let {id} = req.params;
+            db.reviews.getDeleteReview(id,(err,result)=>{
+            if (err) {
+                console.log('error at revoews controller, deleteReview ---', err.message);
+            }
+            else {
+                res.send("Review Deleted!");
+            }
+    })
+    }
+
     let avgRating = (req, res) => {
 
         console.log("avgRating controller triggered");
@@ -47,9 +73,14 @@ module.exports = (db) => {
         })
     }
 
+
+
+
     return {
         reviews,
         newReview,
-        avgRating
+        avgRating,
+        editReview,
+        deleteReview
     }
 }

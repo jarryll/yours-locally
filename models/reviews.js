@@ -2,7 +2,8 @@ module.exports = (dbPoolInstance) => {
 
     let getReviews = (id, callback) => {
 
-        let query = `SELECT users.username, reviews.review, reviews.rating, reviews.created_at FROM ((shops INNER JOIN reviews ON shops.id = reviews.shop_id) INNER JOIN users ON users.id = reviews.user_id) WHERE shops.id = ${id} ORDER BY created_at DESC`;
+        let query = `SELECT users.username, reviews.review,reviews.user_id AS reviewUserId, reviews.rating,
+        reviews.id, reviews.created_at FROM ((shops INNER JOIN reviews ON shops.id = reviews.shop_id) INNER JOIN users ON users.id = reviews.user_id) WHERE shops.id = ${id} ORDER BY created_at DESC`;
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
@@ -30,6 +31,34 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
+    let getEditReview = (values,callback) => {
+        let query = `UPDATE reviews SET review=$1, rating=$2 WHERE id=$3`;
+            dbPoolInstance.query(query, values, (err, result) => {
+                if (err) {
+                    console.log("error at reviews model, getEditReview ----", err.message);
+                    callback(null, null);
+                }
+                else {
+                    callback(null, result);
+                }
+            })
+    }
+
+const getDeleteReview = (id,callback) => {
+        let query= `DELETE FROM reviews WHERE id=${id}`
+        dbPoolInstance.query(query, (err, result) => {
+            if (err) {
+                console.log('error at reviews models, getDeleteReview ---', err.message);
+                callback(null, null);
+            }
+            else {
+                callback(null, result);
+            }
+        })
+}
+
+
+
     let getAvgRating = (shopId, callback) => {
 
         let query = `SELECT COUNT(*), ROUND(AVG(rating), 1) FROM reviews WHERE shop_id  = ${shopId}`;
@@ -48,6 +77,8 @@ module.exports = (dbPoolInstance) => {
     return {
         getReviews,
         getNewReview,
-        getAvgRating
+        getAvgRating,
+        getEditReview,
+        getDeleteReview
     }
 }

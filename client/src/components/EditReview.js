@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import DeleteReview from './DeleteReview';
 
-function NewReview(props) {
 
-    const [review, setReview] = useState("");
-    const [rating, setRating] = useState();
+function EditReview({item,shop}) {
+
+    const [review, setReview] = useState(item.review);
+    const [rating, setRating] = useState(item.rating);
+
+
 
     const onChangeHandler = (e) => {
         setReview(e.target.value);
@@ -17,40 +21,39 @@ function NewReview(props) {
 
         e.preventDefault();
 
-        let { userId, shop } = props;
-        console.log(userId)
         let shopId = shop.id;
-        const body = { review, rating, userId, shopId };
+        let itemId = item.id;
+        const body = { review, rating, itemId };
 
-        const results = await fetch("/review/new", {
-            method: "POST",
+        const results = await fetch("/review/edit", {
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
         });
-        console.log(results);
+        window.location = `/shop/${shop.id}`;
 
-        window.location = `/shop/${props.shop.id}`;
     }
 
+
     return (
-<div>
+       <div>
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-warning"
         data-toggle="modal"
-        data-target={`#id${props.shop.id}createreview`}
+        data-target={`#id${item.id}`}
       >
-        Add Review
+        Edit Review
       </button>
 
       <div
         class="modal"
-        id={`id${props.shop.id}createreview`}
+        id={`id${item.id}`}
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">New Review</h4>
+              <h4 class="modal-title">Edit Review</h4>
               <button
                 type="button"
                 class="close"
@@ -87,13 +90,14 @@ function NewReview(props) {
             </div>
 
             <div class="modal-footer">
+            <DeleteReview item={item} shop={shop} />
               <button
                 type="button"
                 class="btn btn-primary"
                 data-dismiss="modal"
                 onClick={e => onClickHandler(e)}
               >
-                Add
+                Edit
               </button>
               <button
                 type="button"
@@ -110,4 +114,4 @@ function NewReview(props) {
     )
 }
 
-export default NewReview
+export default EditReview
