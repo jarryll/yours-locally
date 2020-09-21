@@ -3,74 +3,75 @@ const SALT = "homebasedbusiness123"
 
 module.exports = (db) => {
 
-let test = (request,response) => {
-        const {description} = request.body;
-        db.accounts.getTest(description,(err,result)=>{
-                response.cookie("test", "test")
-                response.json(result)
-            })
+    let test = (request, response) => {
+        const { description } = request.body;
+        db.accounts.getTest(description, (err, result) => {
+            response.cookie("test", "test")
+            response.json(result)
+        })
     }
 
-const loginSeller = (request,response) => {
-        let {username,password} = request.body;
+    const loginSeller = (request, response) => {
+        let { username, password } = request.body;
         password = sha256(password);
-        db.accounts.getLoginSeller(username,password,(err,result)=>{
-                if(err){
-                    console.log(err)
+        db.accounts.getLoginSeller(username, password, (err, result) => {
+            if (err) {
+                console.log(err)
                 response.send(err)
-            }else {
-              if (result === "username and password is incorrect, please verify and re-enter"){
-                response.send({result})
-              } else {
+            } else {
+                if (result === "username and password is incorrect, please verify and re-enter") {
+                    response.send({ result })
+                } else {
                     const idConfig = result.id;
-                      response.cookie('id',sha256(`${SALT}${result.id}`))
-                      response.cookie('random', idConfig)
-                      response.cookie('logIn', sha256(`${SALT}true`))
-                      response.send({id:idConfig})
+                    response.cookie('id', sha256(`${SALT}${result.id}`))
+                    response.cookie('random', idConfig)
+                    response.cookie('logIn', sha256(`${SALT}true`))
+                    response.send({ id: idConfig })
                 }
-        }
+            }
         })
     }
 
-    const registerSeller = (request,response) => {
-        let {username, password} = request.body;
+    const registerSeller = (request, response) => {
+        let { username, password } = request.body;
         password = sha256(password)
-        db.accounts.getRegisterSeller(username,password,(err,result)=>{
+        db.accounts.getRegisterSeller(username, password, (err, result) => {
             response.send('account registered!')
         })
     }
 
-    const loginUser = (request,response) => {
-        let {username,password} = request.body;
+    const loginUser = (request, response) => {
+        let { username, password } = request.body;
         password = sha256(password);
-        db.accounts.getLoginUser(username,password,(err,result)=>{
-                if(err){
-                    console.log(err)
+        db.accounts.getLoginUser(username, password, (err, result) => {
+            if (err) {
+                console.log(err)
                 response.send(err)
-            }else {
-              if (result === "username and password is incorrect, please verify and re-enter"){
-                response.send({result})
-              } else {
-                      response.cookie('logIn', sha256(`${SALT}true`))
-                      response.send({})
+            } else {
+                if (result === "username and password is incorrect, please verify and re-enter") {
+                    response.send({ result })
+                } else {
+                    response.cookie('logIn', sha256(`${SALT}true`))
+                    response.cookie('user_id', result.id)
+                    response.send({})
                 }
-        }
+            }
         })
     }
 
-    const registerUser = (request,response) => {
-        let {username, password} = request.body;
+    const registerUser = (request, response) => {
+        let { username, password } = request.body;
         password = sha256(password)
-        db.accounts.getRegisterUser(username,password,(err,result)=>{
+        db.accounts.getRegisterUser(username, password, (err, result) => {
             response.send('account registered!')
         })
     }
 
- return{
-    test,
-    registerSeller,
-    loginSeller,
-    registerUser,
-    loginUser
+    return {
+        test,
+        registerSeller,
+        loginSeller,
+        registerUser,
+        loginUser
     }
 }

@@ -30,5 +30,7 @@ module.exports = (app, allModels) => {
   app.get('/enquiries/:id', enquiriesControllerCallbacks.displayEnquiries);
   app.delete('/deleteEnquiry/:id', enquiriesControllerCallbacks.deleteEnquiry);
   app.get('/shops/:id/reviews', reviewsControllerCallbacks.reviews);
+  app.post('/review/new', reviewsControllerCallbacks.newReview);
+  app.get('/shop/:id/average_rating', reviewsControllerCallbacks.avgRating);
 
 };

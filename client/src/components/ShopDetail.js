@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import moment from 'moment';
 
 import Enquiries from './Enquiries';
 import SuccessModal from './SuccessModal';
 import EditShop from './EditShop';
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
+import NewReview from './NewReview';
 
 function ShopDetail({ match }) {
 
@@ -19,6 +21,10 @@ function ShopDetail({ match }) {
     const [successfulEnquiry, setSuccessfulEnquiry] = useState(false);
     const [enquirer, setEnquirer] = useState("");
     const [reviews, setReviews] = useState([]);
+    const [avgRating, setAvgRating] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [userId, setUserId] = useState();
+    const [userReview, setUserReview] = useState(false);
 
 
     // FOR COOKIES
@@ -29,6 +35,8 @@ function ShopDetail({ match }) {
         fetchShop();
         fetchShopListings();
         fetchShopReviews();
+        fetchAvgRating();
+        checkLoggedIn();
     }, []);
 
     // LOGIC TO RENDER ABILITY TO EDIT SHOP LISTINGS AND SHOP DETAILS
@@ -43,16 +51,34 @@ function ShopDetail({ match }) {
         setShop(shop[0])
     }
 
+    // FETCH ALL LISTINGS FOR CURRENT SHOP
     const fetchShopListings = async () => {
         const results = await fetch(`/shops/${match.params.id}/listings`)
         const allListings = await results.json();
         setListings(allListings);
     }
 
+    // FETCH ALL REVIEWS FOR CURRENT SHOP
     const fetchShopReviews = async () => {
         const results = await fetch(`/shops/${match.params.id}/reviews`);
         const reviews = await results.json();
         setReviews(reviews);
+    }
+
+    // FETCH AVG RATING FOR CURRENT SHOP
+    const fetchAvgRating = async () => {
+        const results = await fetch(`/shop/${match.params.id}/average_rating`)
+        const rating = await results.json();
+        setAvgRating(rating[0]);
+    }
+
+    // CHECK IF LOGGED IN
+    const checkLoggedIn = () => {
+
+        if (Cookies.get('logIn')) {
+            setLoggedIn(true);
+            setUserId(Cookies.get('user_id'));
+        }
     }
 
     const handleClickEnquire = (e) => {
@@ -123,12 +149,15 @@ function ShopDetail({ match }) {
 
     // map results of all reviews for this shop 
     const allReviews = reviews.map((item, index) => {
+
+        let date = moment(item.created_at).format('YYYY-MM-DD HH:mm:ss');
+
         return (
             <div key={index}>
                 <div>{item.username}</div>
                 <div>{item.rating}</div>
                 <div>{item.review}</div>
-                <div>{item.created_at}</div>
+                <div>{date}</div>
                 <br />
             </div>
         )
@@ -148,8 +177,14 @@ function ShopDetail({ match }) {
             { isSeller ? <CreateListing id={shop.id} categoryId={shop.category_id} /> : null}
 
             <br />
-            <h5>Reviews</h5>
-            {allReviews}
+            <div>
+                <h5>Reviews</h5>
+                <br />
+                {avgRating.round}/5 with {avgRating.count} reviews
+                <br /><br />
+                {allReviews}
+                {!isSeller && loggedIn ? <NewReview userId={userId} shop={shop} /> : null}
+            </div>
 
             { isSeller ? <EditShop shop={shop} /> : null}
 

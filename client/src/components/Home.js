@@ -22,6 +22,7 @@ function Home() {
         if (Cookies.get('random')) {
             setLoggedIn(true);
             setSellerId(Cookies.get('random'));
+            console.log('hello');
         }
     }
 
