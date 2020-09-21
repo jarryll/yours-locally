@@ -32,7 +32,7 @@ function Results(props) {
             {listings}
         </div>
         <div class="text-center">
-            <button class="btn btn-warning" onClick={()=>window.location='/'}>Back to shops</button>
+            <button class="btn btn-warning mb-5" onClick={()=>window.location='/'}>Back to shops</button>
         </div>
         </div>
     )

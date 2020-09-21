@@ -56,7 +56,7 @@ function FavouriteButton (props) {
                 })
             } catch (err) {
                 console.log(err.stack)
-            }       
+            }
 
         } else if (userId !== undefined) {
             console.log("unfavouriting triggered")
@@ -91,20 +91,20 @@ function FavouriteButton (props) {
                 handleFavourite();
                 console.log("you have clicked favourite")
                 break;
-            default: 
+            default:
                 console.log("something went wrong")
         }
     }
 
-  
+
 
     return (
         <div>
-            
-             { hasFavourited ? <button value={shopId} onClick={(e)=>handleClick(e)}>Unsayang this shop</button> : <button value={shopId} onClick={(e)=>handleClick(e)} >Sayang this shop!</button> }
+
+             { hasFavourited ? <button className="btn btn-danger" value={shopId} onClick={(e)=>handleClick(e)}>Unsayang this shop</button> : <button className="btn btn-success" value={shopId} onClick={(e)=>handleClick(e)} >Sayang this shop!</button> }
 
         </div>
-       
+
     )
 }
 

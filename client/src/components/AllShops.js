@@ -25,8 +25,8 @@ function AllShops() {
               <div class="card-body mx-auto text-center">
                 <h5 class="card-title">{item.shop_name}</h5>
                 <p class="card-text"><small class="text-muted">{item.about}</small></p>
-                <p class="card-text">{item.average_rating}</p>
-                <Link to={`/shop/${item.id}`} key={index} className="btn btn-primary ">Visit Me</Link>
+                <p class="card-text"><i class="fas fa-star" style={{color:'#D2AD28'}}></i>{item.average_rating}</p>
+                <Link to={`/shop/${item.id}`} key={index} className="btn btn-primary">Visit Me</Link>
               </div>
             </div>
         )

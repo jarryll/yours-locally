@@ -23,7 +23,7 @@ if(loggedIn) {
                   <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
                   <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
                   {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
-                  <Link to ='/favourites' className="py-2 d-none d-md-inline-block text-light">Your favourites</Link>
+                  <Link to ='/favourites' className="py-2 d-none d-md-inline-block text-light" id="link4">Your favourites</Link>
                   <Logout />
                 </div>
               </nav>
