@@ -15,6 +15,7 @@ function Nav({ match }) {
 
   // let userId = Cookies.get('user');
   let sellerId = Cookies.get('random');
+  let userId = Cookies.get('user');
 
 
 if(loggedIn) {
@@ -24,7 +25,14 @@ if(loggedIn) {
                   <h3>Welcome, {Cookies.get('username')}</h3>
                   <Link to='/' className="py-2 d-none d-md-inline-block text-light" id="link1">Home</Link>
                   <Link to='/shopByCategory' className="py-2 d-none d-md-inline-block text-light"  id="link2" >Shop By Category</Link>
-                  {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null}
+
+                
+        
+                   {sellerId ? <Link to ={`/inbox/${sellerId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link> : null } 
+
+                  {userId ? <Link to ={`/inbox/user/${userId}`} className="py-2 d-none d-md-inline-block text-light"  id="link3">Inbox</Link>: null}
+              
+
                   <Link to ='/favourites' className="py-2 d-none d-md-inline-block text-light" id="link4">Your favourites</Link>
                   <Logout />
                 </div>

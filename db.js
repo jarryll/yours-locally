@@ -21,9 +21,9 @@ if (process.env.DATABASE_URL) {
 
 } else {
   configs = {
-    user: 'alvischew',
+    user: 'wongjoey',
     host: '127.0.0.1',
-    database: 'seiproj3test',
+    database: 'Test',
     port: 5432
   };
 }
@@ -43,6 +43,7 @@ const allListingsModelsFunction = require('./models/listings');
 const allEnquiriesModelsFunction = require('./models/enquiries');
 const allReviewsModelsFunction = require('./models/reviews');
 const allFavouritesModelsFunction = require('./models/favourites');
+const allResponsesModelsFunction = require('./models/responses');
 
 
 const accountsModelsObject = allAccountsModelsFunction(pool);
@@ -52,6 +53,8 @@ const listingsModelsObject = allListingsModelsFunction(pool);
 const enquiriesModelsObject = allEnquiriesModelsFunction(pool);
 const reviewsModelsObject = allReviewsModelsFunction(pool);
 const favouritesModelsObject = allFavouritesModelsFunction(pool);
+const responsesModelsObject = allResponsesModelsFunction(pool);
+
 
 
 module.exports = {
@@ -71,8 +74,8 @@ module.exports = {
   listings: listingsModelsObject,
   enquiries: enquiriesModelsObject,
   reviews: reviewsModelsObject,
-  favourites: favouritesModelsObject
-
+  favourites: favouritesModelsObject,
+  responses: responsesModelsObject
 };
 
 
