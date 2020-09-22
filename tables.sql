@@ -54,9 +54,18 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 CREATE TABLE IF NOT EXISTS enquiries (
     id SERIAL PRIMARY KEY, 
-    item_name TEXT, 
+    item_name TEXT,
+    enquirer_id INTEGER, 
     enquirer_name TEXT, 
     email_address TEXT NOT NULL, 
     query TEXT, 
     shop_id INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS responses (
+    id SERIAL PRIMARY KEY,
+    enquirer_id INTEGER,
+    respondent_id INTEGER,
+    enquiry_id INTEGER,
+    response TEXT
 );

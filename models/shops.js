@@ -45,7 +45,6 @@ module.exports = (dbPoolInstance) => {
                 callback(null, null);
             }
             else {
-                console.table(result.rows);
                 callback(null, result.rows);
             }
         })

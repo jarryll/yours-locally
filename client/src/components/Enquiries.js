@@ -9,10 +9,19 @@ function Enquiries({ item, id }) {
   const [enquiry, setEnquiry] = useState('');
   const [successEnquiry, setSuccessEnquiry] = useState(false);
 
+  const [userId, setUserId] = useState()
+  useEffect(() => {
+    const checkIfUser = () => {
+      if (Cookies.get('user')) {
+        setUserId(Cookies.get('user'));
+      }
+    }
+    checkIfUser();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = { listing_name, name, email, enquiry, id }
+    const body = { listing_name, userId, name, email, enquiry, id }
     try {
       const response = await fetch('/enquire', {
         method: "POST",

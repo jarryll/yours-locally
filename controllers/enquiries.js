@@ -1,8 +1,8 @@
 module.exports = (db) => {
 
     const sendEnquiry = async (req, res) => {
-        const { listing_name,name,email,enquiry,id } = req.body
-        const queryValues = [listing_name,name,email,enquiry,id];
+        const { listing_name, userId, name,email,enquiry,id } = req.body
+        const queryValues = [listing_name, userId, name,email,enquiry,id];
         try {
             const result = await db.enquiries.addEnquiry(queryValues)
             res.send("success")

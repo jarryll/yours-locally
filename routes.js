@@ -8,6 +8,7 @@ module.exports = (app, allModels) => {
   const enquiriesControllerCallbacks = require('./controllers/enquiries')(allModels);
   const favouritesControllerCallbacks = require('./controllers/favourites')(allModels);
   const reviewsControllerCallbacks = require('./controllers/reviews')(allModels);
+  const responsesControllerCallbacks = require('./controllers/responses')(allModels);
 
   //Routes
   app.get('/shops/:id', shopsControllerCallbacks.getShop);
@@ -43,5 +44,5 @@ module.exports = (app, allModels) => {
   app.post('/favourites/addUserFavourites', favouritesControllerCallbacks.addUserFavourites);
   app.delete('/favourites/sellerUnfavourite', favouritesControllerCallbacks.deleteSellerFavourites);
   app.delete('/favourites/userUnfavourite', favouritesControllerCallbacks.deleteUserFavourites);
-
+  app.get('/responses/:id', responsesControllerCallbacks.getResponses)
 };
