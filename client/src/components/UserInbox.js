@@ -14,19 +14,35 @@ function UserInbox() {
 
 
     const fetchResponses = async () => {
-        const res = await fetch (`/responses/${userId}`)
-        const responses = res.json();
+        const res = await fetch(`/responses/${userId}`)
+        const responses = await res.json();
         setUserResponses(responses)
     }
-    
 
-    useEffect (() => {
+
+    useEffect(() => {
         fetchResponses();
     }, [])
 
-    
+    let thread = responses.map((item, index) => {
+        return (
+            <div key={index}>
+                <p>You asked a question about the <strong>{item.listing_name}</strong> from <strong>{item.shop_name}</strong></p>
+                <strong>Your Question:</strong> {item.query}
+                <br />
+                <strong>Reply:</strong> {item.reply}
+                <br /><br />
+            </div>
+        )
+    })
+
     return (
-        <h1>This is the user inbox</h1>
+        <div>
+            <h1>This is the user inbox</h1>
+            <br />
+            { thread}
+        </div>
+
     )
 }
 

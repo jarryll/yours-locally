@@ -21,9 +21,9 @@ if (process.env.DATABASE_URL) {
 
 } else {
   configs = {
-    user: 'jarryl',
+    user: 'wongjoey',
     host: '127.0.0.1',
-    database: 'hbb',
+    database: 'Test',
     port: 5432
   };
 }
