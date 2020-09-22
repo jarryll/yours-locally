@@ -12,8 +12,6 @@ const EditShop = ({ shop }) => {
     setimageUrl(shop.image_url)
   }
 
-  console.log(shopName, about)
-
   const updateShop = async e => {
     e.preventDefault();
     try {
@@ -28,7 +26,6 @@ const EditShop = ({ shop }) => {
       );
 
       window.location = `/shop/${shop.id}`;
-      console.log(response);
     } catch (err) {
       console.error(err.message);
     }
@@ -52,7 +49,6 @@ const EditShop = ({ shop }) => {
       <div
         className="modal"
         id={`id${shop.id}`}
-        onClick={() => setFunction()}
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -62,7 +58,6 @@ const EditShop = ({ shop }) => {
                 type="button"
                 className="close"
                 data-dismiss="modal"
-                onClick={() => setFunction()}
               >
                 &times;
               </button>

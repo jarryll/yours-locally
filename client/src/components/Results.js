@@ -26,9 +26,11 @@ function Results(props) {
             </div>
         )
     })
+
+
     return (
         <div>
-        <h3 class ="font-weight-light text-center mt-4">You searched for: {props.query}</h3> <br/>
+        {listings.length > 0 ? <h3 class ="font-weight-light text-center mt-4">You searched for: {props.query}</h3> : <h3 class="font-weight-light text-center mt-4">Oops, no items matched your search!</h3>}
         <div class="row  d-flex justify-content-center">
             {listings}
         </div>
