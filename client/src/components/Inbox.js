@@ -14,7 +14,6 @@ function Inbox({ match }) {
         } catch (err) {
             console.log(err.stack)
         }
-
     }
 
     const handleDelete = async (e) => {
@@ -50,7 +49,7 @@ function Inbox({ match }) {
         )
     })
 
-    if (Cookies.get('random') !== match.params.seller_id) {
+    if (Cookies.get('random') != match.params.seller_id) {
         return (
             <div class="d-flex justify-content-center align-items-center" style={{ height: '700px' }}>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
