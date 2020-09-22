@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import ReplyUser from './ReplyUser';
 
 function UserInbox() {
 
@@ -28,10 +29,11 @@ function UserInbox() {
         return (
             <div key={index}>
                 <p>You asked a question about the <strong>{item.listing_name}</strong> from <strong>{item.shop_name}</strong></p>
+
                 <strong>Your Question:</strong> {item.query}
                 <br />
                 <strong>Reply:</strong> {item.reply}
-                <br /><br />
+                    <ReplyUser item={item} />
             </div>
         )
     })

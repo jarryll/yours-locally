@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import ReplySeller from './ReplySeller';
 
 function Inbox({ match }) {
 
@@ -44,6 +45,8 @@ function Inbox({ match }) {
                 <td>{item.enquirer_name}</td>
                 <td>{item.email_address}</td>
                 <td>{item.query}</td>
+                <td><ReplySeller item={item} /></td>
+
                 <td><button id={item.id} onClick={(e) => handleDelete(e)} className="btn btn-outline-danger">Delete</button></td>
             </tr>
         )
@@ -73,6 +76,7 @@ function Inbox({ match }) {
                         <th scope="col">From</th>
                         <th scope="col">Email Address</th>
                         <th scope="col">Query</th>
+                        <th scope="col">ID</th>
                         <th scope="col"></th>
                     </tr>
 

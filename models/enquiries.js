@@ -13,7 +13,7 @@ module.exports = (dbPoolInstance) => {
     }
 
     const getEnquiries = async (queryValues) => {
-        const query = "SELECT enquiries.id, enquiries.item_name, enquiries.email_address, enquiries.enquirer_name, enquiries.query, shops.shop_name FROM enquiries INNER JOIN shops ON enquiries.shop_id = shops.id INNER JOIN sellers ON sellers.id = shops.seller_id WHERE sellers.id = $1;"
+        const query = "SELECT enquiries.id, enquiries.item_name, enquiries.enquirer_id, enquiries.email_address, enquiries.enquirer_name, enquiries.query, shops.shop_name FROM enquiries INNER JOIN shops ON enquiries.shop_id = shops.id INNER JOIN sellers ON sellers.id = shops.seller_id WHERE sellers.id = $1;"
         const result = await dbPoolInstance.query(query, queryValues);
         return result.rows;
     }
