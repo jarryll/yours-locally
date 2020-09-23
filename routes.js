@@ -44,5 +44,7 @@ module.exports = (app, allModels) => {
   app.post('/favourites/addUserFavourites', favouritesControllerCallbacks.addUserFavourites);
   app.delete('/favourites/sellerUnfavourite', favouritesControllerCallbacks.deleteSellerFavourites);
   app.delete('/favourites/userUnfavourite', favouritesControllerCallbacks.deleteUserFavourites);
-  app.get('/responses/:id', responsesControllerCallbacks.getResponses)
+  app.get('/responses/:id', responsesControllerCallbacks.getResponses);
+  app.post('/seller/reply',responsesControllerCallbacks.replyEnquiry)
+  app.post('/user/reply',responsesControllerCallbacks.userReplyEnquiry)
 };
