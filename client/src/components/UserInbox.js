@@ -25,6 +25,8 @@ function UserInbox() {
         fetchResponses();
     }, [])
 
+console.log(responses)
+
     let thread = responses.map((item, index) => {
         return (
             <div key={index}>
