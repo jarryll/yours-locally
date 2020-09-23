@@ -167,6 +167,18 @@ function ShopDetail({ match }) {
         )
     })
 
+        let favouriteCount = shop.favourites_count;
+        let favLogic = shop.favourites_count;
+        let isFavourited = false;
+
+        const handleFav = ()=>{
+            if(!isFavourited && favouriteCount <= favLogic){
+                favouriteCount+=1;
+            } else if (isFavourited >= favLogic){
+                favouriteCount-=1;
+            }
+        }
+
     // map results of all reviews for this shop
     const allReviews = reviews.map((item, index) => {
 
@@ -193,9 +205,9 @@ console.log(item)
                 {isSeller ? <EditShop shop={shop} /> : null}
             </div>
             <div style={{ height: '400px' }} class="d-flex"><img class="card-img-top mb-4" src={shop.image_url} alt={shop.shop_name} style={{ objectFit: 'contain' }} /></div>
-            <h3 class="text-center font-weight-light mt-1">{shop.favourites_count} user(s) liked this shop</h3>
+            <h3 class="text-center font-weight-light mt-1">{favouriteCount} user(s) liked this shop</h3>
 
-            <div class="d-flex justify-content-center mb-4">    {isLoggedIn ? <FavouriteButton sellerId={sellerId} userId={userId} shopId={shop.id} shopDetails={shop} hasFavourited={hasFavourited} setHasFavourited={setHasFavourited}/> : null} </div>
+            <div class="d-flex justify-content-center mb-4">    {isLoggedIn ? <FavouriteButton sellerId={sellerId} userId={userId} shopId={shop.id} shopDetails={shop} hasFavourited={hasFavourited} setHasFavourited={setHasFavourited} onClick={()=>handleFav()} /> : null } </div>
             <h3 class="font-weight-normal text-center mt-1 mb-4">What we do</h3>
             <p class="text-center">{shop.about}</p>
             <h3 class="font-weight-normal text-center mt-1 mb-4">Our products</h3>

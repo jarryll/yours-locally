@@ -28,9 +28,9 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
-    const getCreateListing = (id, categoryId, listing_name,listing_details,image_url,callback) => {
-        let values = [id, categoryId, listing_name,listing_details,image_url]
-        let query= `INSERT INTO listings (listing_name, listing_details, image_url, shop_id, category_id) VALUES($3,$4,$5,$1,$2)`
+    const getCreateListing = (id, categoryId, listing_name,listing_details,image_url,quantity,price,callback) => {
+        let values = [id, categoryId, listing_name,listing_details,image_url,quantity,price]
+        let query= `INSERT INTO listings (listing_name, listing_details, image_url, quantity, price, shop_id, category_id) VALUES($3,$4,$5,$6,$7,$1,$2)`
 
         dbPoolInstance.query(query, values,(err, result) => {
             if (err) {
@@ -44,7 +44,7 @@ module.exports = (dbPoolInstance) => {
 }
 
 const getEditListing = (values,callback) => {
-        let query= `UPDATE listings SET listing_name=$1, listing_details=$2, image_url=$3 WHERE id=$4`
+        let query= `UPDATE listings SET listing_name=$1, listing_details=$2, image_url=$3, quantity=$5,price=$6 WHERE id=$4`
 
         dbPoolInstance.query(query, values,(err, result) => {
             if (err) {

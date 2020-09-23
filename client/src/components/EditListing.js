@@ -7,6 +7,8 @@ function EditListing({ item, id }) {
   const [listing_name, setListing_name] = useState(item.listing_name);
   const [listing_details, setListing_details] = useState(item.listing_details);
   const [image_url, setImage_url] = useState(item.image_url);
+  const [quantity, setQuantity] = useState(item.quantity)
+  const [price,setPrice] = useState(item.price)
   const itemId = item.id
 
   const setFunction = () => {
@@ -18,7 +20,7 @@ function EditListing({ item, id }) {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const body = { listing_name, listing_details, image_url, itemId }
+      const body = { listing_name, listing_details, image_url, itemId, quantity, price }
       const response = await fetch("/listings/edit", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -79,7 +81,6 @@ function EditListing({ item, id }) {
                 onChange={e => setListing_details(e.target.value)}
                 rows='4'
               >
-
               </textarea>
               Image:
               <input
@@ -87,6 +88,20 @@ function EditListing({ item, id }) {
                 className="form-control"
                 value={image_url}
                 onChange={e => setImage_url(e.target.value)}
+              />
+              Quantity Left:
+              <input
+                type="text"
+                className="form-control"
+                value={quantity}
+                onChange={e => setQuantity(e.target.value)}
+              />
+              Price: $
+              <input
+                type="text"
+                className="form-control"
+                value={price}
+                onChange={e => setPrice(e.target.value)}
               />
             </div>
 
