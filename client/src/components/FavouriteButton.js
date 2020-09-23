@@ -44,7 +44,8 @@ function FavouriteButton(props) {
         } else {
             console.log("something went wrong with the favouriting process")
         }
-        favouriteCount += 1;
+        favouriteCount ++;
+        setHasFavourited(true)
     }
 
     const handleUnfavourite = async () => {
@@ -84,12 +85,11 @@ function FavouriteButton(props) {
         } else {
             console.log('something went wrong with the unfavourite process')
         }
-        favouriteCount -= 1
+        favouriteCount --
+        setHasFavourited(false)
     }
 
-
     const handleClick = async (e) => {
-        setHasFavourited(!hasFavourited)
         switch (hasFavourited) {
             case (true):
                 handleUnfavourite();
@@ -103,8 +103,6 @@ function FavouriteButton(props) {
                 console.log("something went wrong")
         }
     }
-
-
 
     return (
         <div>
