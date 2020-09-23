@@ -45,7 +45,7 @@ function FavouriteButton(props) {
             console.log("something went wrong with the favouriting process")
         }
         setHasFavourited(true)
-        favouriteCount ++;
+        favouriteCount += 1;
     }
 
     const handleUnfavourite = async () => {
@@ -86,10 +86,10 @@ function FavouriteButton(props) {
             console.log('something went wrong with the unfavourite process')
         }
         setHasFavourited(false)
-        if (favouriteCount === 0) {
+        if (favouriteCount <= 0) {
             favouriteCount = 0;
         } else {
-            favouriteCount --
+            favouriteCount -= 1
         }
     }
 

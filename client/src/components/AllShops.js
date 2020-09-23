@@ -5,7 +5,6 @@ function AllShops() {
 
     const [allShops, setAllShops] = useState([]);
 
-
     useEffect(() => {
         getAllShops();
     }, [])
@@ -15,8 +14,6 @@ function AllShops() {
         const allShops = await results.json();
         setAllShops(allShops);
     }
-
-
 
     let shops = allShops.map((item, index) => {
         return (
