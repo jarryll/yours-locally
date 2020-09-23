@@ -47,4 +47,5 @@ module.exports = (app, allModels) => {
   app.get('/responses/:id', responsesControllerCallbacks.getResponses);
   app.post('/seller/reply',responsesControllerCallbacks.replyEnquiry)
   app.post('/user/reply',responsesControllerCallbacks.userReplyEnquiry)
+  app.get('/userqueries/:id', responsesControllerCallbacks.sellerPullResponses);
 };
