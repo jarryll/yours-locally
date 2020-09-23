@@ -39,14 +39,14 @@ function ReplyUser({item}) {
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target={`#id${item.listing_name}enquiry`}
+        data-target={`#id${item.responseid}enquiry`}
       >
         Reply Seller
       </button>
 
       <div
         className="modal"
-        id={`id${item.listing_name}enquiry`}
+        id={`id${item.responseid}enquiry`}
       >
         <div className="modal-dialog">
           <div className="modal-content">
