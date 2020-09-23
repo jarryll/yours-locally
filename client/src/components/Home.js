@@ -40,6 +40,9 @@ function Home() {
     return (
         <div>
             <h1 className="display-4 font-weight-light text-center mt-4" >Yours Locally.</h1>
+            <br />
+            <p className="lead text-center">A platform for home-based business to showcase their labours of love and get the attention they deserve. </p>
+            <br />
             <p className="lead font-weight-lighter text-center">Hover over the search icon to begin a search</p>
             <Search
                 onChangeHandler={onChangeHandler}
