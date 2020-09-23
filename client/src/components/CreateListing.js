@@ -5,12 +5,14 @@ function CreateListing({ id, categoryId }) {
   const [listing_name, setListing_name] = useState('');
   const [listing_details, setListing_details] = useState('');
   const [image_url, setImage_url] = useState('');
+  const [quantity, setQuantity] = useState(0)
+  const [price,setPrice] = useState(0)
 
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const body = { id, categoryId, listing_name, listing_details, image_url }
+      const body = { id, categoryId, listing_name, listing_details, image_url,quantity,price }
       const response = await fetch("/listings/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,6 +35,13 @@ function CreateListing({ id, categoryId }) {
   const handleImageURLChange = (e) => {
     setImage_url(e.target.value)
   }
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value)
+  }
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value)
+  }
+
 
 
   return (
@@ -87,6 +96,18 @@ function CreateListing({ id, categoryId }) {
                 className="form-control"
                 value={image_url}
                 onChange={e => handleImageURLChange(e)}
+              />
+              <input
+                type="text"
+                className="form-control"
+                value={quantity}
+                onChange={e => handleQuantityChange(e)}
+              />
+              <input
+                type="text"
+                className="form-control"
+                value={price}
+                onChange={e => handlePriceChange(e)}
               />
             </div>
 

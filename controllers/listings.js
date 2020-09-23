@@ -29,8 +29,8 @@ module.exports = (db) => {
     }
 
    const createListing = (request,response) => {
-    let {id, categoryId, listing_name,listing_details,image_url} = request.body;
-    db.listings.getCreateListing(id, categoryId, listing_name,listing_details,image_url,(err,result)=>{
+    let {id, categoryId, listing_name,listing_details,image_url,quantity,price} = request.body;
+    db.listings.getCreateListing(id, categoryId, listing_name,listing_details,image_url,quantity,price,(err,result)=>{
             if (err) {
                 console.log('error at listings controller, shopListings ---', err.message);
             }
@@ -41,8 +41,8 @@ module.exports = (db) => {
    }
 
    const editListing = (request,response) => {
-    let {listing_name,listing_details,image_url, itemId} = request.body;
-    let values = [listing_name,listing_details,image_url, itemId];
+    let {listing_name,listing_details,image_url, itemId,quantity,price} = request.body;
+    let values = [listing_name,listing_details,image_url, itemId,quantity,price];
     db.listings.getEditListing(values,(err,result)=>{
             if (err) {
                 console.log('error at listings controller, shopListings ---', err.message);
