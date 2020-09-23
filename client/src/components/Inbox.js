@@ -6,7 +6,7 @@ function Inbox({ match }) {
 
     const [enquiries, setEnquiries] = useState([]);
     const [didDelete, setDidDelete] = useState(false);
-    const [question,setQuestion] = useState([]);
+    const [question, setQuestion] = useState([]);
 
     const fetchEnquiries = async () => {
         try {
@@ -60,7 +60,7 @@ function Inbox({ match }) {
                 <td>{item.enquirer_name}</td>
                 <td>{item.email_address}</td>
                 <td>{item.query}</td>
-                <td>{question[index] != undefined ? question[index].reply : null }</td>
+                <td>{question[index] != undefined ? question[index].reply : null}</td>
                 <td><ReplySeller item={item} /></td>
 
                 <td><button id={item.id} onClick={(e) => handleDelete(e)} className="btn btn-outline-danger">Delete</button></td>
@@ -83,7 +83,8 @@ function Inbox({ match }) {
 
     return (
         <div className="container">
-            <h1> You are at the inbox of Seller {match.params.seller_id}</h1>
+            <br />
+            <h1>Your Inbox</h1>
             <table className="table">
                 <thead className="thead-dark">
                     <tr>

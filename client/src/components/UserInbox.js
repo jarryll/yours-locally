@@ -25,26 +25,42 @@ function UserInbox() {
         fetchResponses();
     }, [])
 
-console.log(responses)
+    console.log(responses)
 
     let thread = responses.map((item, index) => {
         return (
-            <div key={index}>
-                <p>You asked a question about the <strong>{item.listing_name}</strong> from <strong>{item.shop_name}</strong></p>
-
-                <strong>Your Question:</strong> {item.query}
-                <br />
-                <strong>Reply:</strong> {item.reply}
-                    <ReplyUser item={item} />
-            </div>
+            <tr key={index}>
+                <td>{item.shop_name}</td>
+                <td>{item.listing_name}</td>
+                <td>{item.query}</td>
+                <td>{item.reply}</td>
+                <td><ReplyUser item={item} /></td>
+            </tr>
         )
     })
 
     return (
-        <div>
-            <h1>This is the user inbox</h1>
+        // <div>
+
+        <div className="container">
             <br />
-            { thread}
+            <h1>Your Inbox</h1>
+            <table className="table">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Query</th>
+                        <th scope="col">Their Reply</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+
+                </thead>
+
+                {thread}
+            </table>
+
         </div>
 
     )

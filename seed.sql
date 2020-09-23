@@ -4,13 +4,21 @@ INSERT INTO sellers (username, hashed_password) VALUES ('jarryl', '2cf24dba5fb0a
 INSERT INTO sellers (username, hashed_password) VALUES ('alvis', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
 INSERT INTO sellers (username, hashed_password) VALUES ('joey', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
 
-INSERT INTO users (username, hashed_password) VALUES ('joeywong', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
+INSERT INTO users (username, hashed_password) VALUES ('joseph', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
 INSERT INTO users (username, hashed_password) VALUES ('harry', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
 INSERT INTO users (username, hashed_password) VALUES ('polly', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
 
 INSERT INTO categories (category_name) VALUES ('food');
 INSERT INTO categories (category_name) VALUES ('apparel');
-INSERT INTO categories (category_name) VALUES ('gadgets');
+INSERT INTO categories (category_name) VALUES ('tech');
+INSERT INTO categories (category_name) VALUES ('games');
+INSERT INTO categories (category_name) VALUES ('flowers');
+INSERT INTO categories (category_name) VALUES ('beauty');
+INSERT INTO categories (category_name) VALUES ('household');
+INSERT INTO categories (category_name) VALUES ('pets');
+INSERT INTO categories (category_name) VALUES ('sports');
+INSERT INTO categories (category_name) VALUES ('hobbies');
+INSERT INTO categories (category_name) VALUES ('automotive');
 
 INSERT INTO shops (shop_name, image_url, about, category_id, seller_id) VALUES ('Jarryl', 'https://i2.wp.com/www.techgrapple.com/wp-content/uploads/2016/03/John-Lennon-Quote-FaceBook-Cover.jpg?resize=851%2C315&ssl=1', 'This is jarry''s shop', 2, 1);
 INSERT INTO shops (shop_name, image_url, about, category_id, seller_id) VALUES ('Alvis', 'https://i.pinimg.com/originals/a7/d0/61/a7d061a54f31db9330dec99b28aab1ca.jpg', 'This is alvis''s shop', 1, 2);
@@ -22,8 +30,6 @@ INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('best cookies I''
 INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('seller never replied to my enquiry.', 1, 2, 1);
 INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('quality of the headphone was okay.', 4, 3, 1);
 INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('can''t expect much for the price I paid.', 2, 3, 2);
-INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('pearls were very chewy. will buy again.', 4, 4, 1);
-INSERT INTO reviews (review, rating, shop_id, user_id) VALUES ('not a lot of variety.', 2, 4, 2);
 
 INSERT INTO listings (listing_name, listing_details, image_url, quantity, price, shop_id, category_id) VALUES ('My Smelly Socks', 'Socks, very smelly socks', 'https://thumbs.dreamstime.com/b/dirty-sock-bad-stench-sloppy-clothes-stinky-toe-grey-object-washing-cartoon-flat-illustration-green-wave-smelly-feet-175743396.jpg', 5, 3.20, 1, 2);
 INSERT INTO listings (listing_name, listing_details, image_url, quantity, price, shop_id, category_id) VALUES ('Jacket', 'Stay warm', 'https://cdn.shopify.com/s/files/1/2694/4876/products/vne-98431-front-1.jpg?v=1587813320', 10, 2.00, 1, 2);
@@ -37,8 +43,8 @@ INSERT INTO listings (listing_name, listing_details, image_url, quantity, price,
 
 INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('Jacket', 2, 'harry', 'h@gmail.com', 'What sizes do you have available?', 1);
 INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('Cakes', 2, 'harry', 'h@gmail.com', 'What flavours do you have available?', 2);
-INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('iPhone', 1, 'jo', 'j@gmail.com', 'What''s the storage on this?', 3);
-INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('My Smelly Socks', 1, 'jo', 'j@gmail.com', 'Why are you selling this??', 1);
+INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('iPhone', 1, 'joseph', 'j@gmail.com', 'What''s the storage on this?', 3);
+INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('My Smelly Socks', 1, 'joseph', 'j@gmail.com', 'Why are you selling this??', 1);
 INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('Cookies', 3, 'polly', 'p@gmail.com', 'Do you have gluten-free options?', 2);
 INSERT INTO enquiries (item_name, enquirer_id, enquirer_name, email_address, query, shop_id) VALUES ('Film Camera', 3, 'polly', 'p@gmail.com', 'Is this secondhand?', 3);
 
