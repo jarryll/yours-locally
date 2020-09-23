@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-
 function CreateListing({ id, categoryId }) {
-
   const [listing_name, setListing_name] = useState('');
   const [listing_details, setListing_details] = useState('');
   const [image_url, setImage_url] = useState('');
   const [quantity, setQuantity] = useState(0)
   const [price,setPrice] = useState(0)
-
-
+  
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -24,8 +21,6 @@ function CreateListing({ id, categoryId }) {
       throw new Error("ERRORRRR")
     }
   }
-
-
   const handleListingNameChange = (e) => {
     setListing_name(e.target.value)
   }
@@ -41,9 +36,6 @@ function CreateListing({ id, categoryId }) {
   const handlePriceChange = (e) => {
     setPrice(e.target.value)
   }
-
-
-
   return (
     <div>
       <button
@@ -54,7 +46,6 @@ function CreateListing({ id, categoryId }) {
       >
         Add Listing
       </button>
-
       <div
         className="modal"
         id={`id${id}listing`}
@@ -71,7 +62,6 @@ function CreateListing({ id, categoryId }) {
                 &times;
               </button>
             </div>
-
             <div className="modal-body">
               Listing Details:
               <input
@@ -88,7 +78,6 @@ function CreateListing({ id, categoryId }) {
                 onChange={e => handleListingDetailsChange(e)}
                 rows='4'
               >
-
               </textarea>
               Image:
               <input
@@ -97,12 +86,14 @@ function CreateListing({ id, categoryId }) {
                 value={image_url}
                 onChange={e => handleImageURLChange(e)}
               />
+              Quantity Left:
               <input
                 type="text"
                 className="form-control"
                 value={quantity}
                 onChange={e => handleQuantityChange(e)}
               />
+              Price: $
               <input
                 type="text"
                 className="form-control"
@@ -110,7 +101,6 @@ function CreateListing({ id, categoryId }) {
                 onChange={e => handlePriceChange(e)}
               />
             </div>
-
             <div className="modal-footer">
               <button
                 type="button"
@@ -134,5 +124,4 @@ function CreateListing({ id, categoryId }) {
     </div>
   )
 }
-
 export default CreateListing

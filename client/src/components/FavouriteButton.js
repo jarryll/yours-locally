@@ -4,7 +4,9 @@ import React from 'react';
 function FavouriteButton(props) {
 
     // RECEIVE PROPS FROM SHOP DETAILS
-    const { sellerId, userId, shopId, hasFavourited, setHasFavourited } = props;
+    const { sellerId, userId, shopId, hasFavourited, setHasFavourited, shop } = props;
+
+    let favouriteCount = shop.favourites_count;
 
     // FUNCTION TO HANDLE THE FAVOURITING
     const handleFavourite = async () => {
@@ -42,6 +44,7 @@ function FavouriteButton(props) {
         } else {
             console.log("something went wrong with the favouriting process")
         }
+        favouriteCount += 1;
     }
 
     const handleUnfavourite = async () => {
@@ -81,6 +84,7 @@ function FavouriteButton(props) {
         } else {
             console.log('something went wrong with the unfavourite process')
         }
+        favouriteCount -= 1
     }
 
 
@@ -104,9 +108,15 @@ function FavouriteButton(props) {
 
     return (
         <div>
-             { hasFavourited ? <button className="btn btn-danger" value={shopId} onClick={(e)=>handleClick(e)}>Unsayang this shop</button> : <button className="btn btn-success" value={shopId} onClick={(e)=>handleClick(e)} >Sayang this shop!</button> }
-        </div>
 
+          <div>
+               <h3 class="text-center font-weight-light mt-1">{favouriteCount} user(s) liked this shop</h3>
+          </div>
+          <div>
+             { hasFavourited ? <button className="btn btn-danger" value={shopId} onClick={(e)=>handleClick(e)}>Unsayang this shop</button> : <button className="btn btn-success" value={shopId} onClick={(e)=>handleClick(e)} >Sayang this shop!</button> }
+          </div>
+        </div>
+        
     )
 }
 
