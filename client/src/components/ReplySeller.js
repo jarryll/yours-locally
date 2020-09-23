@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 
 function ReplySeller({item}) {
-
   const [reply, setReply] = useState('');
   let respondentId = Cookies.get('random');
   let enquiryId = item.id;
   let enquirerId = item.enquirer_id;
-
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -24,27 +21,22 @@ function ReplySeller({item}) {
       throw new Error("ERRORRRR")
     }
   }
-
-
   const handleReplyChange = (e) => {
     setReply(e.target.value)
   }
-
-
   return (
     <div>
       <button
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target={`#id${item.responseid}reply`}
+        data-target={`#id${item.id}reply`}
       >
         Reply Enquiry
       </button>
-
       <div
         className="modal"
-        id={`id${item.responseid}reply`}
+        id={`id${item.id}reply`}
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -58,9 +50,7 @@ function ReplySeller({item}) {
                 &times;
               </button>
             </div>
-
             <div className="modal-body">
-
               Query:
               <input
                 type="text"
@@ -68,7 +58,6 @@ function ReplySeller({item}) {
                 value={item.query}
                 readOnly
               />
-
                 Reply:
               <textarea
                 type="text"
@@ -79,7 +68,6 @@ function ReplySeller({item}) {
               >
               </textarea>
             </div>
-
             <div className="modal-footer">
               <button
                 type="button"
