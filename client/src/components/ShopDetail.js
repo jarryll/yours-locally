@@ -174,7 +174,7 @@ function ShopDetail({ match }) {
         const handleFav = ()=>{
             if(!isFavourited && favouriteCount <= favLogic){
                 favouriteCount+=1;
-            } else if (isFavourited >= favLogic){
+            } else if (isFavourited && favouriteCount >= favLogic){
                 favouriteCount-=1;
             }
         }
