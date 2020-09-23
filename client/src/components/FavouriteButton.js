@@ -21,7 +21,8 @@ function FavouriteButton(props) {
                     },
                     body: JSON.stringify(body)
                 })
-                console.log(response);
+                setHasFavourited(true)
+                favouriteCount += 1;
             } catch (err) {
                 throw new Error("Something went wrong with adding seller favourites")
             }
@@ -36,16 +37,14 @@ function FavouriteButton(props) {
                     },
                     body: JSON.stringify(body)
                 })
-                const favouritesId = await response.json();
-                console.log(favouritesId)
+                setHasFavourited(true)
+                favouriteCount += 1;
             } catch (err) {
                 throw new Error("Something went wrong with adding user favourites")
             }
         } else {
             console.log("something went wrong with the favouriting process")
         }
-        setHasFavourited(true)
-        favouriteCount += 1;
     }
 
     const handleUnfavourite = async () => {
@@ -60,7 +59,12 @@ function FavouriteButton(props) {
                     },
                     body: JSON.stringify(body)
                 })
-                console.log(response);
+                setHasFavourited(false)
+                if (favouriteCount <= 0) {
+                    favouriteCount = 0;
+                    } else {
+                    favouriteCount -= 1
+                }   
             } catch (err) {
                 console.log(err.stack)
             }
@@ -77,19 +81,18 @@ function FavouriteButton(props) {
                     },
                     body: JSON.stringify(body)
                 })
-                console.log(response);
+                setHasFavourited(false)
+                if (favouriteCount <= 0) {
+                    favouriteCount = 0;
+                    } else {
+                    favouriteCount -= 1
+                }
             } catch (err) {
                 console.log(err.stack)
             }
 
         } else {
             console.log('something went wrong with the unfavourite process')
-        }
-        setHasFavourited(false)
-        if (favouriteCount <= 0) {
-            favouriteCount = 0;
-        } else {
-            favouriteCount -= 1
         }
     }
 
