@@ -137,6 +137,7 @@ function Enquiries({ item, id }) {
                 type="submit"
                 className="btn btn-primary"
                 data-dismiss="modal"
+                onClick={e => handleSubmit(e)}
               >
                 Enquire
               </button>
@@ -144,7 +145,6 @@ function Enquiries({ item, id }) {
                 type="button"
                 className="btn btn-warning"
                 data-dismiss="modal"
-                onClick={e => handleSubmit(e)}
               >
                 Close
               </button>
