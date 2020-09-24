@@ -25,14 +25,6 @@ function ShopDetail({ match }) {
     const [sellerId, setSellerId] = useState(Cookies.get('random'));
     const [hasFavourited, setHasFavourited] = useState(false);
 
-    // const [showEnquiries, setShowEnquiries] = useState(false);
-    // const [selectedItem, setSelectedItem] = useState("");
-    // const [enquiry, setEnquiry] = useState("");
-    // const [userEmail, setUserEmail] = useState("");
-    // const [enquirer, setEnquirer] = useState("");
-    // const [loggedIn, setLoggedIn] = useState(false);
-    // const [userReview, setUserReview] = useState(false);
-
     // FOR COOKIES
     let isSeller = false;
     let isLoggedIn = false;
@@ -95,47 +87,6 @@ function ShopDetail({ match }) {
             console.log("something went wrong with fetching favourite status")
         }
     }
-
-    // const handleClickEnquire = (e) => {
-    //     setShowEnquiries(true)
-    //     setSelectedItem(e.target.id)
-    // }
-
-    // const handleClose = () => {
-    //     setShowEnquiries(false)
-    // }
-
-    // const handleChange = (e) => {
-    //     switch (e.target.id) {
-    //         case "email":
-    //             setUserEmail(e.target.value);
-    //             break;
-    //         case "name":
-    //             setEnquirer(e.target.value);
-    //             break;
-    //         default:
-    //             setEnquiry(e.target.value)
-    //     }
-    // }
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const shopId = match.params.id;
-    //     const body = { selectedItem, enquirer, userEmail, enquiry, shopId }
-    //     try {
-    //         const response = await fetch('/enquire', {
-    //             method: "POST",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify(body)
-    //         })
-    //     } catch (err) {
-    //         throw new Error("failed to submit query")
-    //     }
-
-    // }
 
     // LOGIC TO CHECK SELLER / USER STATUS
     if (Cookies.get('random') == shop.seller_id) {

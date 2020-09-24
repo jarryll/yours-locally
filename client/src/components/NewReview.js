@@ -80,7 +80,9 @@ function NewReview(props) {
                 min="1"
                 max="5"
                 required
-                onkeydown="return false"
+                onKeyDown={(event) => {
+                  event.preventDefault();
+                }}
                 onChange={e => ratingHandler(e)}
                 rows='4'
                 />
