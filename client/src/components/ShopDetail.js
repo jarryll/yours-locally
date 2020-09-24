@@ -157,7 +157,7 @@ function ShopDetail({ match }) {
                     <p class="card-text"><small class="text-muted">{item.listing_details}</small></p>
                     <p class="card-text"><small class="text-muted">Item(s) Left: {item.quantity}</small></p>
                     <p class="card-text"><small class="text-muted">${item.price}</small></p>
-                    <Enquiries item={item} id={match.params.id} />
+                    {isLoggedIn? <Enquiries item={item} id={match.params.id} /> : null }
                     <br />
                     {isSeller ? <EditListing id={match.params.id} item={item} /> : null}
                 </div>
