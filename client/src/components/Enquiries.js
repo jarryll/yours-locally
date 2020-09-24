@@ -115,7 +115,7 @@ function Enquiries({ item, id }) {
 
               Your Email
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 value={email}
                 onChange={e => handleEmailChange(e)}
