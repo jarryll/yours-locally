@@ -96,7 +96,7 @@ function Enquiries({ item, id }) {
               </button>
             </div>
 
-        <form>
+        <form onSubmit={e => handleSubmit(e)}>
             <div className="modal-body">
               Item:
               <input
@@ -136,7 +136,6 @@ function Enquiries({ item, id }) {
                 type="submit"
                 className="btn btn-primary"
                 data-dismiss="modal"
-                onClick={e => handleSubmit(e)}
               >
                 Enquire
               </button>
