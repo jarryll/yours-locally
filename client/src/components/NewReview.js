@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function NewReview(props) {
 
     const [review, setReview] = useState("");
-    const [rating, setRating] = useState();
+    const [rating, setRating] = useState(1);
 
     const onChangeHandler = (e) => {
         setReview(e.target.value);
