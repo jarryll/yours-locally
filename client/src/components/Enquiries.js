@@ -73,7 +73,7 @@ function Enquiries({ item, id }) {
   return (
 
     <div>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form>
       <button
         type="button"
         className="btn btn-primary"
@@ -144,6 +144,7 @@ function Enquiries({ item, id }) {
                 type="button"
                 className="btn btn-warning"
                 data-dismiss="modal"
+                onClick={e => handleSubmit(e)}
               >
                 Close
               </button>
