@@ -96,6 +96,7 @@ function Enquiries({ item, id }) {
               </button>
             </div>
 
+        <form>
             <div className="modal-body">
               Item:
               <input
@@ -132,7 +133,7 @@ function Enquiries({ item, id }) {
 
             <div className="modal-footer">
               <button
-                type="button"
+                type="submit"
                 className="btn btn-primary"
                 data-dismiss="modal"
                 onClick={e => handleSubmit(e)}
@@ -147,6 +148,7 @@ function Enquiries({ item, id }) {
                 Close
               </button>
             </div>
+            </form>
           </div>
         </div>
       </div>
