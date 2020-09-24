@@ -10,6 +10,7 @@ function Logout() {
                 Cookies.remove('type');
                 Cookies.remove('id');
                 Cookies.remove('user');
+                Cookies.remove('username');
                 window.location = '/';
         }
 

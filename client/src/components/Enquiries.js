@@ -73,6 +73,7 @@ function Enquiries({ item, id }) {
   return (
 
     <div>
+      <form onSubmit={e => handleSubmit(e)}>
       <button
         type="button"
         className="btn btn-primary"
@@ -96,7 +97,7 @@ function Enquiries({ item, id }) {
               </button>
             </div>
 
-        <form onSubmit={e => handleSubmit(e)}>
+  
             <div className="modal-body">
               Item:
               <input
@@ -121,7 +122,7 @@ function Enquiries({ item, id }) {
                 value={email}
                 onChange={e => handleEmailChange(e)}
               />
-            </div>
+ 
             Enquiry Details:
             <textarea
               type="text"
@@ -130,7 +131,7 @@ function Enquiries({ item, id }) {
               onChange={e => handleEnquiryChange(e)}
               rows='6'
             ></textarea>
-
+            </div>
             <div className="modal-footer">
               <button
                 type="submit"
@@ -147,10 +148,10 @@ function Enquiries({ item, id }) {
                 Close
               </button>
             </div>
-            </form>
           </div>
         </div>
       </div>
+      </form>
     </div>
 
   )
