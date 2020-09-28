@@ -72,7 +72,7 @@ if(loggedIn) {
 
   * Using React hooks gave me a lot of flexibility in designing the application, and gave better control over state management, which reduced the time needed for debugging. 
 
-## WDI Unit 3 Post Mortem
+## WDI Unit 3 Post Mortem - Alvis
 
 1. What habits did I use during this unit that helped me?
 
@@ -94,6 +94,21 @@ if(loggedIn) {
   * Overall teammates are very cooperative and approachable which makes the project much more bearable.
 
 
+## WDI Unit 3 Post Mortem - Jarryl
 
 
+What habits did I use during this unit that helped me?
+
+* Having a robust discussion on the wireframing, ERD diagrams, routes planning and modelling as a team before the coding process
+* Meeting up to clean up the code base and eliminate throwaway code so everyone has a clean copy to work on.
+* Developing a more modular design mindset when it comes to group work and React.
+
+What habits did I have during this unit that I can improve on?
+
+* Take time to review each other's codes, check readability, catch logical errors, identify edge cases.
+* Spend more time to discuss how to integrate components instead of rushing into developing the functionality right away, so we don't end up with technical debt.
+
+How is the overall level of the course during this unit? (instruction, course materials, etc.)
+
+* Good experience to work in teams. Can be better if there was more sharing on some of the ways teams can be structured, so we know what to expect in the industry.
 
