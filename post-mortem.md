@@ -112,3 +112,22 @@ How is the overall level of the course during this unit? (instruction, course ma
 
 * Good experience to work in teams. Can be better if there was more sharing on some of the ways teams can be structured, so we know what to expect in the industry.
 
+## WDI Unit 3 Post Mortem - Joey
+
+1. What habits did I use during this unit that helped me?
+
+  * Proper indentation
+  * Setting up error console logs at every point to help me figure out where the source was whenever i ran into a problem
+  
+2. What habits did I have during this unit that I can improve on?
+
+  * Time management
+  * Knowng when to take a break and then regrouping later
+  * Communication!!!!!
+  * Commenting - Helps you to understand your code better
+  * Pseudo coding - Helps you to properly plan out the approach to fix problems and seed out other additional problems you might run into in the future.
+  
+3. How is the overall level of the course during this unit? (instruction, course materials, etc.)
+
+  * Ample instructions were given and good advice was imparted from the start, which I really appreciate.
+  * Teammates were accommodating and understanding, and helped me out a lot whenever I ran into trouble while coding.
