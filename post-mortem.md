@@ -4,11 +4,17 @@
 
   * Communicate more and be clear on the call to action before starting on a task.
   * Before adding any features, be sure of solving the edge cases before deploying the feature to the app.
+  * More robust testing and better error handling - should be a priority rather than an afterthought.
+  * Planning the authentication methods could have been handled better. Quite a bit of time was spent trying to decide on
+    the best way to determine if a particular client was a user or a seller, and that affected many of the core 
+    functionality of our app.
 
 2. What in my process and approach to this project went well that we would repeat next time?
 
   * We had strong user stories as well as a clearly defined problem to solve. We were direct in our approach in defining the functions required in our MVP to solve the problem.
   * We planned out our workflow clearly via drawing an ERD diagram , creating wireframes for each of the routes and also think through the set up of the app before starting to code.
+  * Talking to my teammates when I was stuck helped me articulate and frame the problems better, and often resulted in a solution. 
+  * Having more pairs of eyes on the code also made for quick debugging.
 
 ## Code and Code Design
 
@@ -32,6 +38,9 @@
     }
   }
 ```
+
+  * Integrating customised error handling pages for a better user experience.
+  * Testing out more edge cases so we don't bug out.
 
 
 2. What in my code and program design in the project went well? Is there anything I would do the same next time?
@@ -61,6 +70,7 @@ if(loggedIn) {
     )
 ```
 
+  * Using React hooks gave me a lot of flexibility in designing the application, and gave better control over state management, which reduced the time needed for debugging. 
 
 ## WDI Unit 3 Post Mortem
 
